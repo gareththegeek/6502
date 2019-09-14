@@ -1,0 +1,49 @@
+{
+  "name": "6502",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --open",
+    "lint:fix": "eslint ./**/*.{ts,tsx} --fix",
+    "test": "nyc mocha"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "test/**/*",
+      "dist"
+    ],
+    "reporter": [
+      "text",
+      "lcov"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.2",
+    "@types/mocha": "^5.2.7",
+    "@types/react": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.2.0",
+    "mocha-loader": "^3.0.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-loader": "^6.1.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
