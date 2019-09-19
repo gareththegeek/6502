@@ -1,4 +1,4 @@
-import IStatusRegister from "./istatusRegister";
+import IStatusRegister from './istatusRegister'
 
 export default interface IState {
     pc: number

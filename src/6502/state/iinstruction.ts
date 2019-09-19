@@ -1,7 +1,7 @@
 export default interface IInstruction {
     opcode: number
-    mnemonic: String
-    addressingMode: String
+    mnemonic: string
+    addressingMode: string
     size: number
     cycles: number
     addPageBoundaryCycle: boolean

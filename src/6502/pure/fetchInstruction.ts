@@ -1,18 +1,7 @@
-import IBus from "../../ibus";
+import IBus from '../../ibus'
 import { TFetchInstruction } from './typings'
-import IInstruction from "../state/iinstruction";
-import Instruction from "../state/instruction";
-
-export default (): TFetchInstruction => (
-    (bus: IBus, address: number): IInstruction => {
-        const opcode = bus.read(address)
-
-        if (!(opcode in INSTRUCTION_TABLE)) {
-            return INSTRUCTION_TABLE[0x00]
-        }
-
-        return INSTRUCTION_TABLE[opcode]
-    })
+import IInstruction from '../state/iinstruction'
+import Instruction from '../state/instruction'
 
 const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
     0x00: new Instruction(0x00, 'BRK', 'Implied', 1, 7),
@@ -166,4 +155,14 @@ const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
     0xf9: new Instruction(0xf9, 'SBC', 'ABS,Y', 3, 4, true),
     0xfd: new Instruction(0xfd, 'SBC', 'ABS,X', 3, 4, true),
     0xfe: new Instruction(0xfe, 'INC', 'ABS,X', 3, 7)
+}
+
+export default (): TFetchInstruction => (bus: IBus, address: number): IInstruction => {
+    const opcode = bus.read(address)
+
+    if (!(opcode in INSTRUCTION_TABLE)) {
+        return INSTRUCTION_TABLE[0x00]
+    }
+
+    return INSTRUCTION_TABLE[opcode]
 }

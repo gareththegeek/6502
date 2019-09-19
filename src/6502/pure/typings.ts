@@ -1,6 +1,6 @@
-import IInstruction from "../state/iinstruction";
-import IBus from "../../ibus";
-import IState from "../state/state";
+import IInstruction from '../state/iinstruction'
+import IBus from '../../ibus'
+import IState from '../state/istate'
 
 export type TReset = (state: IState) => IState
 export type TClock = (state: IState) => IState

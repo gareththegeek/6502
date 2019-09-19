@@ -1,4 +1,4 @@
-import { TReset, TClock, TIrq, TNmi } from "./pure/typings";
+import { TReset, TClock, TIrq, TNmi } from './pure/typings'
 
 export default interface I6502 {
     reset: TReset
@@ -7,13 +7,9 @@ export default interface I6502 {
     nmi: TNmi
 }
 
-export const factory = (
-    reset: TReset,
-    clock: TClock,
-    irq: TIrq,
-    nmi: TNmi): I6502 => ({
-        reset,
-        clock,
-        irq,
-        nmi
-    })
+export const factory = (reset: TReset, clock: TClock, irq: TIrq, nmi: TNmi): I6502 => ({
+    reset,
+    clock,
+    irq,
+    nmi
+})

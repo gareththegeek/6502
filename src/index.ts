@@ -1,6 +1,6 @@
 import Bus from './bus'
 import { factory } from './6502/I6502'
-import IState from './6502/state/state'
+import IState from './6502/state/istate'
 import Reset from './6502/pure/reset'
 import Clock from './6502/pure/clock'
 import Irq from './6502/pure/irq'
@@ -8,8 +8,7 @@ import Nmi from './6502/pure/nmi'
 import Initialise from './6502/pure/initialise'
 import FetchInstruction from './6502/pure/fetchInstruction'
 
-
-function main() {
+function main(): void {
     // const element = document.createElement('div')
 
     // element.innerHTML = foo()
@@ -21,7 +20,7 @@ function main() {
     const clock = Clock(initialise, fetchInstruction, bus)
     const irq = Irq()
     const nmi = Nmi()
-    
+
     const cpu = factory(reset, clock, irq, nmi)
 
     let state: IState = null

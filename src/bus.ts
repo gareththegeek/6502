@@ -1,9 +1,8 @@
-import IBus from "./ibus";
+import IBus from './ibus'
 
 export default class implements IBus {
-    
     public write(address: number, data: number): void {
-
+        /*STUB*/
     }
 
     public read(address: number): number {

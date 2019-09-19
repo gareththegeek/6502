@@ -1,7 +1,6 @@
-import IState from "../state/state";
-import { TNmi } from "./typings";
+import IState from '../state/istate'
+import { TNmi } from './typings'
 
-export default (): TNmi => (
-    (state: IState): IState => {
-        return null
-    })
+export default (): TNmi => (state: IState): IState => {
+    return null
+}

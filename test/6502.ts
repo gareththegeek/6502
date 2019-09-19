@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-import mos6502 from '../src/6502/6502'
 
 describe('6502', function() {
     // it('add', function() {
