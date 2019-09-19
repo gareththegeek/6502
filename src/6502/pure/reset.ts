@@ -1,5 +1,5 @@
-import IState from '../state/istate'
-import { TReset } from './typings'
+import { TReset } from '../typings'
+import IState from '../store/istate'
 
 export default (): TReset => (state: IState): IState => {
     return {

@@ -1,6 +1,6 @@
-import IState from '../state/istate'
-import { TInitialise, TFetchInstruction, TClock } from './typings'
-import IBus from '../../ibus'
+import { TInitialise, TFetchInstruction, TClock } from '../typings'
+import IBus from '../../bus/ibus'
+import IState from '../store/istate'
 
 export default (initialise: TInitialise, fetchInstruction: TFetchInstruction, bus: IBus): TClock => (
     state: IState
