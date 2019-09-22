@@ -1,4 +1,4 @@
-import IState from '../store/istate'
+import IState from '../state/istate'
 import { TInitialise } from '../typings'
 
 const INITIALISATION_CYCLES = 6

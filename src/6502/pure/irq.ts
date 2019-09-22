@@ -1,6 +1,6 @@
-import { TIrq } from '../typings'
-import IState from '../store/istate'
+import { TStateMachine } from '../typings'
+import IState from '../state/istate'
 
-export default (): TIrq => (state: IState): IState => {
+export default (): TStateMachine => (state: IState): IState => {
     return null
 }

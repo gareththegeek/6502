@@ -1,4 +1,4 @@
-export default (array: Array<any>, index: number, value: any) =>
+export default <T>(array: Array<T>, index: number, value: T) =>
     array.map((item, idx) => {
         if (idx === index) {
             return value

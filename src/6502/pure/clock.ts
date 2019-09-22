@@ -1,8 +1,8 @@
-import { TInitialise, TFetchInstruction, TClock } from '../typings'
+import { TInitialise, TFetchInstruction, TStateMachine } from '../typings'
 import IBus from '../../bus/ibus'
-import IState from '../store/istate'
+import IState from '../state/istate'
 
-export default (initialise: TInitialise, fetchInstruction: TFetchInstruction, bus: IBus): TClock => (
+export default (initialise: TInitialise, fetchInstruction: TFetchInstruction, bus: IBus): TStateMachine => (
     state: IState
 ): IState => {
     if (state.cycles !== 0) {

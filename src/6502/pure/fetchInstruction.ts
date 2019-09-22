@@ -1,7 +1,7 @@
 import IBus from '../../bus/ibus'
 import { TFetchInstruction } from '../typings'
-import IInstruction from '../store/iinstruction'
-import Instruction from '../store/instruction'
+import IInstruction from '../state/iinstruction'
+import Instruction from '../state/instruction'
 
 const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
     0x00: new Instruction(0x00, 'BRK', 'Implied', 1, 7),

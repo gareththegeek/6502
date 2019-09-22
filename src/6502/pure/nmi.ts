@@ -1,6 +1,6 @@
-import { TNmi } from '../typings'
-import IState from '../store/istate'
+import { TStateMachine } from '../typings'
+import IState from '../state/istate'
 
-export default (): TNmi => (state: IState): IState => {
+export default (): TStateMachine => (state: IState): IState => {
     return null
 }
