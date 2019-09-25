@@ -21,7 +21,7 @@ describe('pubsub.subscribe', () => {
         const existing = (_: any) => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
-                'TEST_MESSAGE': [existing]
+                TEST_MESSAGE: [existing]
             }
         }
         const expected = (_: any) => ({ foo: 'bar' })
@@ -40,7 +40,7 @@ describe('pubsub.subscribe', () => {
         const existing = (_: any) => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
-                'TEST_MESSAGE': [existing]
+                TEST_MESSAGE: [existing]
             }
         }
         const unexpected = (_: any) => ({ foo: 'bar' })
@@ -60,7 +60,7 @@ describe('pubsub.subscribe', () => {
         const existing = (_: any) => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
-                'TEST_MESSAGE_1': [existing]
+                TEST_MESSAGE_1: [existing]
             }
         }
         const expected = (_: any) => ({ foo: 'bar' })

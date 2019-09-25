@@ -1,5 +1,5 @@
 import * as sinon from 'sinon'
-import publish from "../../src/pubsub/pure/publish"
+import publish from '../../src/pubsub/pure/publish'
 import { expect } from 'chai'
 
 describe('pubsub.publish', () => {
@@ -7,7 +7,7 @@ describe('pubsub.publish', () => {
         const stubs = [sinon.stub(), sinon.stub()]
         const state = {
             subscriptions: {
-                'TEST_MESSAGE': stubs
+                TEST_MESSAGE: stubs
             }
         }
         const message = { foo: 'bar' }
@@ -24,7 +24,7 @@ describe('pubsub.publish', () => {
         const stub = sinon.stub()
         const state = {
             subscriptions: {
-                'NOT_TEST_MESSAGE': [stub]
+                NOT_TEST_MESSAGE: [stub]
             }
         }
         const message = { foo: 'bar' }
@@ -40,7 +40,7 @@ describe('pubsub.publish', () => {
         const stubs = [sinon.stub(), sinon.stub().returns(expected), sinon.stub()]
         const state = {
             subscriptions: {
-                'TEST_MESSAGE': stubs
+                TEST_MESSAGE: stubs
             }
         }
         const message = { foo: 'bar' }

@@ -16,7 +16,11 @@ import write from './memory/pure/write'
 import getPageAddress from './memory/pure/getPageAddress'
 import getPageIndex from './memory/pure/getPageIndex'
 import initialiseMemory from './memory/pure/initialise'
-import curry from './state/curry'
+import IPubSub from './pubsub/ipubsub'
+import IPubSubState from './pubsub/state/istate'
+import publish from './pubsub/pure/publish'
+import subscribe from './pubsub/pure/subscribe'
+import pubsubStateFactory from './pubsub/state/factory'
 
 function main(): void {
     // const element = document.createElement('div')
@@ -24,48 +28,62 @@ function main(): void {
     // element.innerHTML = foo()
     // return element
 
-    const foo = (a: number, b: number) => {
-        return a + b
-    }
-    const bar = curry(foo, 5)
-    console.log(bar(6))
+    // const foo = (a: number, b: number) => {
+    //     return a + b
+    // }
+    // const bar = curry(foo, 5)
+    // console.log(bar(6))
 
-    const bus = new Bus()
-
-    const cpuStore: IStore<ICpuState> = { state: null }
-    const cpu: I6502 = connect(
+    const pubsubStore: IStore<IPubSubState> = { state: pubsubStateFactory() }
+    const pubsub: IPubSub = connect(
         {
-            reset: reset(),
-            clock: clock(initialise(), fetchInstruction(), bus),
-            irq: irq(),
-            nmi: nmi()
+            subscribe: subscribe(),
+            publish: publish()
         },
-        cpuStore
-    ) as I6502
+        pubsubStore
+    ) as IPubSub
 
-    const memoryStore: IStore<IMemoryState> = { state: null }
-    const memory: IMemory = connect(
-        {
-            initialise: initialiseMemory(),
-            read: read(0, getPageIndex(), getPageAddress()),
-            write: write(getPageIndex(), getPageAddress())
-        },
-        memoryStore
-    ) as IMemory
+    pubsub.subscribe('HELLO_WORLD', message => {
+        console.log(message)
+    })
+    pubsub.publish('HELLO_WORLD', 'hello world')
 
-    cpu.reset()
-    console.log(cpuStore.state)
-    cpu.clock()
-    console.log(cpuStore.state)
-    cpu.clock()
-    console.log(cpuStore.state)
+    // const bus = new Bus()
 
-    memory.initialise()
-    console.log(memoryStore.state)
-    memory.write(1, 2) //TODO read and write do not have correct signature for connect
-    console.log(memoryStore.state)
-    console.log(memory.read(1))
-    console.log(memoryStore.state)
+    // const cpuStore: IStore<ICpuState> = { state: null }
+    // const cpu: I6502 = connect(
+    //     {
+    //         reset: reset(),
+    //         clock: clock(initialise(), fetchInstruction(), bus),
+    //         irq: irq(),
+    //         nmi: nmi()
+    //     },
+    //     cpuStore
+    // ) as I6502
+
+    // const memoryStore: IStore<IMemoryState> = { state: null }
+    // const memory: IMemory = connect(
+    //     {
+    //         initialise: initialiseMemory(),
+    //         read: read(0, getPageIndex(), getPageAddress()),
+    //         write: write(getPageIndex(), getPageAddress())
+    //     },
+    //     memoryStore
+    // ) as IMemory
+
+    // cpu.reset()
+    // console.log(cpuStore.state)
+    // cpu.clock()
+    // console.log(cpuStore.state)
+    // cpu.clock()
+    // console.log(cpuStore.state)
+
+    // memory.initialise()
+    // console.log(memoryStore.state)
+    // memory.write(1, 2) //TODO read and write do not have correct signature for connect
+    // console.log(memoryStore.state)
+    // console.log(memory.read(1))
+    // console.log(memoryStore.state)
 }
 main()
 //document.body.appendChild(component())
