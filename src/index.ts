@@ -1,52 +1,13 @@
-import Bus from './bus/bus'
-import reset from './6502/pure/reset'
-import clock from './6502/pure/clock'
-import irq from './6502/pure/irq'
-import nmi from './6502/pure/nmi'
-import initialise from './6502/pure/initialise'
-import fetchInstruction from './6502/pure/fetchInstruction'
-import IStore from './state/istore'
-import connect from './state/connect'
-import I6502 from './6502/I6502'
-import ICpuState from './6502/state/istate'
-import IMemoryState from './memory/state/istate'
-import IMemory from './memory/IMemory'
-import read from './memory/pure/read'
-import write from './memory/pure/write'
-import getPageAddress from './memory/pure/getPageAddress'
-import getPageIndex from './memory/pure/getPageIndex'
-import initialiseMemory from './memory/pure/initialise'
-import IPubSub from './pubsub/ipubsub'
-import IPubSubState from './pubsub/state/istate'
-import publish from './pubsub/pure/publish'
-import subscribe from './pubsub/pure/subscribe'
-import pubsubStateFactory from './pubsub/state/factory'
+import pubSubFactory from './pubsub/factory'
+import busFactory from './bus/factory'
+import cpuFactory from './6502/factory'
+import memoryFactory from './memory/factory'
 
 function main(): void {
-    // const element = document.createElement('div')
-
-    // element.innerHTML = foo()
-    // return element
-
-    // const foo = (a: number, b: number) => {
-    //     return a + b
-    // }
-    // const bar = curry(foo, 5)
-    // console.log(bar(6))
-
-    const pubsubStore: IStore<IPubSubState> = { state: pubsubStateFactory() }
-    const pubsub: IPubSub = connect(
-        {
-            subscribe: subscribe(),
-            publish: publish()
-        },
-        pubsubStore
-    ) as IPubSub
-
-    pubsub.subscribe('HELLO_WORLD', message => {
-        console.log(message)
-    })
-    pubsub.publish('HELLO_WORLD', 'hello world')
+    const pubsub = pubSubFactory()
+    const bus = busFactory(pubsub)
+    const cpu = cpuFactory(bus)
+    const memory = memoryFactory({ from: 0x2000, to: 0x4000 }, 0x20)
 
     // const bus = new Bus()
 
@@ -71,12 +32,14 @@ function main(): void {
     //     memoryStore
     // ) as IMemory
 
-    // cpu.reset()
-    // console.log(cpuStore.state)
-    // cpu.clock()
-    // console.log(cpuStore.state)
-    // cpu.clock()
-    // console.log(cpuStore.state)
+    cpu.reset()
+    cpu.clock()
+    cpu.clock()
+
+    memory.initialise()
+    memory.write({ address: 0x2002, value: 0xbe })
+    const actual = memory.read({ address: 0x2002 })
+    console.log(actual)
 
     // memory.initialise()
     // console.log(memoryStore.state)

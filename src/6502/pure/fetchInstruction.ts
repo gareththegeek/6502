@@ -158,7 +158,7 @@ const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
 }
 
 export default (): TFetchInstruction => (bus: IBus, address: number): IInstruction => {
-    const opcode = bus.read(address)
+    const opcode = bus.read({ address })
 
     if (!(opcode in INSTRUCTION_TABLE)) {
         return INSTRUCTION_TABLE[0x00]

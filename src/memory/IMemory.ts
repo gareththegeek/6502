@@ -1,7 +1,9 @@
 import IState from './state/istate'
+import IBusRead from '../bus/state/ibusread'
+import IBusWrite from '../bus/state/ibuswrite'
 
 export default interface IMemory {
     initialise: () => IState
-    read: (address: number) => number
-    write: (address: number, data: number) => void
+    read: (data: IBusRead) => number
+    write: (data: IBusWrite) => void
 }

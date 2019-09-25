@@ -1,4 +1,7 @@
+import IBusWrite from './state/ibuswrite'
+import IBusRead from './state/ibusread'
+
 export default interface IBus {
-    write(address: number, data: number): void
-    read(address: number): number
+    write: (data: IBusWrite) => void
+    read: (data: IBusRead) => number
 }
