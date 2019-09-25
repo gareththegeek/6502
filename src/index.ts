@@ -16,12 +16,20 @@ import write from './memory/pure/write'
 import getPageAddress from './memory/pure/getPageAddress'
 import getPageIndex from './memory/pure/getPageIndex'
 import initialiseMemory from './memory/pure/initialise'
+import curry from './state/curry'
 
 function main(): void {
     // const element = document.createElement('div')
 
     // element.innerHTML = foo()
     // return element
+
+    const foo = (a: number, b: number) => {
+        return a + b
+    }
+    const bar = curry(foo, 5)
+    console.log(bar(6))
+
     const bus = new Bus()
 
     const cpuStore: IStore<ICpuState> = { state: null }
@@ -39,7 +47,7 @@ function main(): void {
     const memory: IMemory = connect(
         {
             initialise: initialiseMemory(),
-            read: read(getPageIndex(), getPageAddress()),
+            read: read(0, getPageIndex(), getPageAddress()),
             write: write(getPageIndex(), getPageAddress())
         },
         memoryStore
@@ -54,7 +62,7 @@ function main(): void {
 
     memory.initialise()
     console.log(memoryStore.state)
-    memory.write(1, 2) TODO read and write do not have correct signature for connect
+    memory.write(1, 2) //TODO read and write do not have correct signature for connect
     console.log(memoryStore.state)
     console.log(memory.read(1))
     console.log(memoryStore.state)
