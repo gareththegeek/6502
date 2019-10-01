@@ -1,5 +1,7 @@
 import IPubSub from '../../pubsub/ipubsub'
-import IBusRead from '../state/ibusread'
+import IBusReadProps from '../state/ibusreadprops'
 import { BUS_READ } from '../messageTypes'
+import IBusResult from '../state/ibusresult'
 
-export default (pubsub: IPubSub): ((data: IBusRead) => number) => (data: IBusRead) => pubsub.publish(BUS_READ, data)
+export default (pubsub: IPubSub) => (props: IBusReadProps): number =>
+    pubsub.publish<IBusResult>(BUS_READ, props).find(result => result.read === true).value

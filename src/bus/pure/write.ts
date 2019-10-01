@@ -1,5 +1,7 @@
 import IPubSub from '../../pubsub/ipubsub'
-import IBusWrite from '../state/ibuswrite'
+import IBusWriteProps from '../state/ibuswriteprops'
 import { BUS_WRITE } from '../messageTypes'
+import IBusResult from '../state/ibusresult'
 
-export default (pubsub: IPubSub): ((data: IBusWrite) => void) => (data: IBusWrite) => pubsub.publish(BUS_WRITE, data)
+export default (pubsub: IPubSub) => (props: IBusWriteProps): boolean =>
+    pubsub.publish<IBusResult>(BUS_WRITE, props).some(result => result.write === true)

@@ -1,7 +1,7 @@
-import IBusWrite from './state/ibuswrite'
-import IBusRead from './state/ibusread'
+import IBusReadProps from './state/ibusreadprops'
+import IBusWriteProps from './state/ibuswriteprops'
 
 export default interface IBus {
-    write: (data: IBusWrite) => void
-    read: (data: IBusRead) => number
+    write: (props: IBusWriteProps) => boolean
+    read: (props: IBusReadProps) => number
 }

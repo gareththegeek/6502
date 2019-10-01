@@ -1,18 +1,13 @@
 import IPubSub from './ipubsub'
-import IStore from '../state/istore'
-import IState from './state/istate'
-import factory from './state/factory'
-import connect from '../state/connect'
 import subscribe from './pure/subscribe'
 import publish from './pure/publish'
+import connectPure from '../state/connectPure'
+import curry from '../state/curry'
 
 export default (): IPubSub => {
-    const pubsubStore: IStore<IState> = { state: factory() }
-    return connect(
-        {
-            subscribe: subscribe(),
-            publish: publish()
-        },
-        pubsubStore
-    ) as IPubSub
+    const store = { state: { subscriptions: {} } }
+    return {
+        subscribe: connectPure(store, subscribe()),
+        publish: (messageType, message) => publish()(store.state, messageType, message)
+    } as IPubSub
 }

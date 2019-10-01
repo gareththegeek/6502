@@ -13,6 +13,7 @@ module.exports = {
   },
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }],
+    "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/interface-name-prefix": [
       "warn",
       {

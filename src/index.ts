@@ -2,51 +2,44 @@ import pubSubFactory from './pubsub/factory'
 import busFactory from './bus/factory'
 import cpuFactory from './6502/factory'
 import memoryFactory from './memory/factory'
+import romFactory from './rom/factory'
+import rangeFactory from './rangedcomponent/factory'
+import { BUS_READ, BUS_WRITE } from './bus/messageTypes'
 
 function main(): void {
     const pubsub = pubSubFactory()
     const bus = busFactory(pubsub)
     const cpu = cpuFactory(bus)
     const memory = memoryFactory({ from: 0x2000, to: 0x4000 }, 0x20)
+    const rom = romFactory({ from: 0xfffc, to: 0xfffd })
 
-    // const bus = new Bus()
+    const memoryRanged = rangeFactory({ from: 0x2000, to: 0x4000 }, memory.read, memory.write)
+    const romRanged = rangeFactory({ from: 0xfffc, to: 0xfffd }, rom.read, () => ({
+        value: null,
+        read: false,
+        write: false
+    }))
 
-    // const cpuStore: IStore<ICpuState> = { state: null }
-    // const cpu: I6502 = connect(
-    //     {
-    //         reset: reset(),
-    //         clock: clock(initialise(), fetchInstruction(), bus),
-    //         irq: irq(),
-    //         nmi: nmi()
-    //     },
-    //     cpuStore
-    // ) as I6502
+    pubsub.subscribe(BUS_READ, memoryRanged.read)
+    pubsub.subscribe(BUS_WRITE, memoryRanged.write)
+    pubsub.subscribe(BUS_READ, romRanged.read)
 
-    // const memoryStore: IStore<IMemoryState> = { state: null }
-    // const memory: IMemory = connect(
-    //     {
-    //         initialise: initialiseMemory(),
-    //         read: read(0, getPageIndex(), getPageAddress()),
-    //         write: write(getPageIndex(), getPageAddress())
-    //     },
-    //     memoryStore
-    // ) as IMemory
+    memory.initialise()
+    rom.initialise([0x00, 0x20])
 
     cpu.reset()
     cpu.clock()
     cpu.clock()
+    cpu.clock()
+    cpu.clock()
+    cpu.clock()
+    cpu.clock()
+    cpu.clock()
+    cpu.clock()
 
-    memory.initialise()
     memory.write({ address: 0x2002, value: 0xbe })
     const actual = memory.read({ address: 0x2002 })
     console.log(actual)
-
-    // memory.initialise()
-    // console.log(memoryStore.state)
-    // memory.write(1, 2) //TODO read and write do not have correct signature for connect
-    // console.log(memoryStore.state)
-    // console.log(memory.read(1))
-    // console.log(memoryStore.state)
 }
 main()
 //document.body.appendChild(component())

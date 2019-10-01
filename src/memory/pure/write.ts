@@ -1,12 +1,12 @@
 import updateElement from '../../immutability/updateElement'
 import IState from '../state/istate'
 import { TGetPageIndex, TGetPageAddress } from '../typings'
-import IRange from '../../range/irange'
-import IBusWrite from '../../bus/state/ibuswrite'
+import IBusWriteProps from '../../bus/state/ibuswriteprops'
+import IRange from '../../rangedcomponent/state/irange'
 
 export default (range: IRange, getPageIndex: TGetPageIndex, getPageAddress: TGetPageAddress) => (
     state: IState,
-    data: IBusWrite
+    data: IBusWriteProps
 ): IState => {
     const pageIndex = getPageIndex(data.address - range.from)
     const pageAddress = getPageAddress(data.address - range.from)
@@ -16,6 +16,9 @@ export default (range: IRange, getPageIndex: TGetPageIndex, getPageAddress: TGet
     }
 
     return {
-        pages: updateElement(state.pages, pageIndex, newPage)
+        pages: updateElement(state.pages, pageIndex, newPage),
+        value: null,
+        read: false,
+        write: true
     }
 }
