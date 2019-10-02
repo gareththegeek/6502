@@ -1,3 +1,3 @@
 import { TGetPageIndex } from '../typings'
 
-export default (): TGetPageIndex => (address: number): number => address >> 2
+export default (): TGetPageIndex => (address: number): number => address >> 8
