@@ -14,6 +14,12 @@ module.exports = {
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }],
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_+"
+      }
+    ],
     "@typescript-eslint/interface-name-prefix": [
       "warn",
       {

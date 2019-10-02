@@ -6,7 +6,7 @@ describe('pubsub.subscribe', () => {
     it('should add a subscription for the specified message type', () => {
         const messageType = 'TEST_MESSAGE'
         const state = factory()
-        const expected = (_: any) => ({ foo: 'bar' })
+        const expected = (): { foo: string } => ({ foo: 'bar' })
 
         const actual = subscribe()(state, messageType, expected)
 
@@ -16,15 +16,15 @@ describe('pubsub.subscribe', () => {
         expect(actual.subscriptions[messageType][0]).to.be.equal(expected)
     })
 
-    it('should preserve existing subscriptions for the specified message type', () => {
+    it('should preserve existing subscriptions for the specified message type', (): void => {
         const messageType = 'TEST_MESSAGE'
-        const existing = (_: any) => ({ foo: 'notbar' })
+        const existing = (): { foo: string } => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
                 TEST_MESSAGE: [existing]
             }
         }
-        const expected = (_: any) => ({ foo: 'bar' })
+        const expected = (): { foo: string } => ({ foo: 'bar' })
 
         const actual = subscribe()(state, messageType, expected)
 
@@ -37,13 +37,13 @@ describe('pubsub.subscribe', () => {
 
     it('should not mutate previous subscription state', () => {
         const messageType = 'TEST_MESSAGE'
-        const existing = (_: any) => ({ foo: 'notbar' })
+        const existing = (): { foo: string } => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
                 TEST_MESSAGE: [existing]
             }
         }
-        const unexpected = (_: any) => ({ foo: 'bar' })
+        const unexpected = (): { foo: string } => ({ foo: 'bar' })
 
         subscribe()(state, messageType, unexpected)
 
@@ -57,13 +57,13 @@ describe('pubsub.subscribe', () => {
     it('should support multiple message type subscriptions', () => {
         const messageType1 = 'TEST_MESSAGE_1'
         const messageType2 = 'TEST_MESSAGE_2'
-        const existing = (_: any) => ({ foo: 'notbar' })
+        const existing = (): { foo: string } => ({ foo: 'notbar' })
         const state = {
             subscriptions: {
                 TEST_MESSAGE_1: [existing]
             }
         }
-        const expected = (_: any) => ({ foo: 'bar' })
+        const expected = (): { foo: string } => ({ foo: 'bar' })
 
         const actual = subscribe()(state, messageType2, expected)
 

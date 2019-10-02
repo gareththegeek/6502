@@ -2,7 +2,6 @@ import IPubSub from './ipubsub'
 import subscribe from './pure/subscribe'
 import publish from './pure/publish'
 import connectPure from '../state/connectPure'
-import curry from '../state/curry'
 
 export default (): IPubSub => {
     const store = { state: { subscriptions: {} } }

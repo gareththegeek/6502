@@ -7,10 +7,11 @@ import initialise from './pure/initialise'
 import connect from '../state/connect'
 import IRange from '../rangedcomponent/state/irange'
 
-export default (range: IRange, pageCount: number): IMemory =>
+export default (range: IRange): IMemory =>
     connect(
         {
-            initialise: initialise(pageCount),
+            range,
+            initialise: initialise(),
             read: read(range, getPageIndex(), getPageAddress()),
             write: write(range, getPageIndex(), getPageAddress())
         },

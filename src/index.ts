@@ -4,27 +4,15 @@ import cpuFactory from './6502/factory'
 import memoryFactory from './memory/factory'
 import romFactory from './rom/factory'
 import rangeFactory from './rangedcomponent/factory'
-import { BUS_READ, BUS_WRITE } from './bus/messageTypes'
 
 function main(): void {
     const pubsub = pubSubFactory()
     const bus = busFactory(pubsub)
     const cpu = cpuFactory(bus)
-    const memory = memoryFactory({ from: 0x2000, to: 0x4000 }, 0x20)
-    const rom = romFactory({ from: 0xfffc, to: 0xfffd })
+    const memory = rangeFactory(pubsub, memoryFactory({ from: 0x2000, to: 0x4000 }))
+    const rom = rangeFactory(pubsub, romFactory({ from: 0xfffc, to: 0xfffd }))
 
-    const memoryRanged = rangeFactory({ from: 0x2000, to: 0x4000 }, memory.read, memory.write)
-    const romRanged = rangeFactory({ from: 0xfffc, to: 0xfffd }, rom.read, () => ({
-        value: null,
-        read: false,
-        write: false
-    }))
-
-    pubsub.subscribe(BUS_READ, memoryRanged.read)
-    pubsub.subscribe(BUS_WRITE, memoryRanged.write)
-    pubsub.subscribe(BUS_READ, romRanged.read)
-
-    memory.initialise()
+    memory.initialise(0x20)
     rom.initialise([0x00, 0x20])
 
     cpu.reset()

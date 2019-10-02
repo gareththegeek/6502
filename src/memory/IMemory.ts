@@ -1,9 +1,6 @@
 import IState from './state/istate'
-import { TBusRead } from '../bus/state/tbusread'
-import { TBusWrite } from '../bus/state/tbuswrite'
+import IRangedComponent from '../rangedcomponent/irangedcomponent'
 
-export default interface IMemory {
+export default interface IMemory extends IRangedComponent {
     initialise: () => IState
-    read: TBusRead
-    write: TBusWrite
 }

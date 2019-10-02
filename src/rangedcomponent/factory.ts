@@ -1,16 +1,24 @@
-import IRange from './state/irange'
-import { TBusRead } from '../bus/state/tbusread'
-import { TBusWrite } from '../bus/state/tbuswrite'
-import IRangedComponent from './state/irangedcomponent'
+import IRangedComponent from './irangedcomponent'
 import connect from '../state/connect'
 import read from './pure/read'
 import write from './pure/write'
+import IPubSub from '../pubsub/ipubsub'
+import { BUS_READ, BUS_WRITE } from '../bus/messageTypes'
+import initialise from './pure/initialise'
 
-export default (range: IRange, readimpl: TBusRead, writeimpl: TBusWrite): IRangedComponent =>
-    connect(
+export default (pubsub: IPubSub, component: IRangedComponent): IRangedComponent => {
+    const result = connect(
         {
-            read: read(range, readimpl),
-            write: write(range, writeimpl)
+            range: component.range,
+            initialise: initialise(component),
+            read: read(component.range, component.read),
+            write: write(component.range, component.write)
         },
         { state: null }
     ) as IRangedComponent
+
+    pubsub.subscribe(BUS_READ, result.read)
+    pubsub.subscribe(BUS_WRITE, result.write)
+
+    return result
+}

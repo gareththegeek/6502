@@ -1,3 +1,5 @@
+import { TMessageHandler } from './tmessagehandler'
+
 export default interface IState {
-    subscriptions: { [messageType: string]: Array<(message: any) => any> }
+    subscriptions: { [messageType: string]: Array<TMessageHandler> }
 }

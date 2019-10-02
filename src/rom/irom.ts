@@ -1,7 +1,6 @@
 import IState from './state/istate'
-import { TBusRead } from '../bus/state/tbusread'
+import IRangedComponent from '../rangedcomponent/irangedcomponent'
 
-export default interface IRom {
+export default interface IRom extends IRangedComponent {
     initialise: (data: Array<number>) => IState
-    read: TBusRead
 }

@@ -1,1 +1,1 @@
-export default <T>(array: Array<T>, value: T) => [...array, value]
+export default <T>(array: Array<T>, value: T): Array<T> => [...array, value]

@@ -1,6 +1,7 @@
 import { TInitialise, TFetchInstruction, TStateMachine, TFetchOperand, TGetAddressingMode } from '../typings'
 import IBus from '../../bus/ibus'
 import IState from '../state/istate'
+import IDataRegisters from '../state/idataregisters'
 
 export default (
     initialise: TInitialise,
@@ -19,7 +20,7 @@ export default (
     //TODO extra cycles
     const instruction = fetchInstruction(bus, state.pc)
     const operand = fetchOperand(bus, state.pc + 1, instruction.size - 1)
-    const dataRegisters = (({ a, x, y }) => ({ a, x, y }))(state)
+    const dataRegisters = (({ a, x, y }): IDataRegisters => ({ a, x, y }))(state)
     const parameter = getAddressingMode(bus, instruction.addressingMode, operand, dataRegisters)
     const pc = state.pc + instruction.size
 

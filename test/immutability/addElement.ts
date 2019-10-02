@@ -3,7 +3,7 @@ import { expect } from 'chai'
 
 describe('immutability.addElement', () => {
     it('should return an array with the new element', () => {
-        const array: any = []
+        const array: Array<{ foo: string }> = []
         const expected = { foo: 'bar' }
 
         const actual = addElement(array, expected)
@@ -13,7 +13,7 @@ describe('immutability.addElement', () => {
     })
 
     it('should not mutate original array', () => {
-        const array: any = []
+        const array: Array<{ foo: string }> = []
         const expected = { foo: 'bar' }
 
         addElement(array, expected)

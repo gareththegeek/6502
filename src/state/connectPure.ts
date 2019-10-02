@@ -1,3 +1,4 @@
+/*eslint @typescript-eslint/no-explicit-any: "off"*/
 import IStore from './istore'
 import curry from './curry'
 
