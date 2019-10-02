@@ -35,9 +35,12 @@ describe('pubsub.publish', () => {
         expect(actual).to.be.undefined
     })
 
-    it('should return result of handler if truthy', () => {
-        const expected = 7
-        const stubs = [sinon.stub(), sinon.stub().returns(expected), sinon.stub()]
+    it('should return result of all handlers', () => {
+        const expected = [7, 8]
+        const stubs = [
+            sinon.stub().returns(expected[0]),
+            sinon.stub().returns(expected[1])
+        ]
         const state = {
             subscriptions: {
                 TEST_MESSAGE: stubs
@@ -48,6 +51,6 @@ describe('pubsub.publish', () => {
         const actual = publish()(state, 'TEST_MESSAGE', message)
 
         expect(actual).to.not.be.undefined
-        expect(actual).to.be.equal(expected)
+        expect(actual).to.be.deep.equal(expected)
     })
 })
