@@ -1,5 +1,5 @@
-import initialise from "../../src/memory/pure/initialise"
-import { expect } from "chai"
+import initialise from '../../src/memory/pure/initialise'
+import { expect } from 'chai'
 
 describe('memory.initialise', () => {
     describe('should create the specified number of 256byte pages', () => {

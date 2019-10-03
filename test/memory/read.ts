@@ -1,14 +1,16 @@
-import { expect } from "chai"
-import read from "../../src/memory/pure/read"
-import getPageIndex from "../../src/memory/pure/getPageIndex"
-import getPageAddress from "../../src/memory/pure/getPageAddress"
+import { expect } from 'chai'
+import read from '../../src/memory/pure/read'
+import getPageIndex from '../../src/memory/pure/getPageIndex'
+import getPageAddress from '../../src/memory/pure/getPageAddress'
 
 describe('memory.read', () => {
     it('should not mutate paged memory', () => {
         const state = {
-            pages: [{
-                data: [0, 0, 0, 0, 0]
-            }],
+            pages: [
+                {
+                    data: [0, 0, 0, 0, 0]
+                }
+            ],
             value: null as number,
             read: false,
             write: false
@@ -25,11 +27,7 @@ describe('memory.read', () => {
         const from = 0x1200
         const to = 0x1300
         const state = {
-            pages: [
-                { data: [] },
-                { data: [5, 4, expected, 2, 1] },
-                { data: [] }
-            ],
+            pages: [{ data: [] }, { data: [5, 4, expected, 2, 1] }, { data: [] }],
             value: null as number,
             read: false,
             write: false

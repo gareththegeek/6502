@@ -1,4 +1,11 @@
-import { TInitialise, TFetchInstruction, TStateMachine, TFetchOperand, TGetAddressingMode } from '../typings'
+import {
+    TInitialise,
+    TFetchInstruction,
+    TStateMachine,
+    TFetchOperand,
+    TGetAddressingMode,
+    TGetOperation
+} from '../typings'
 import IBus from '../../bus/ibus'
 import IState from '../state/istate'
 import IDataRegisters from '../state/idataregisters'
@@ -8,6 +15,7 @@ export default (
     fetchInstruction: TFetchInstruction,
     fetchOperand: TFetchOperand,
     getAddressingMode: TGetAddressingMode,
+    getOperation: TGetOperation,
     bus: IBus
 ): TStateMachine => (state: IState): IState => {
     if (state.cycles !== 0) {
@@ -22,10 +30,13 @@ export default (
     const operand = fetchOperand(bus, state.pc + 1, instruction.size - 1)
     const dataRegisters = (({ a, x, y }): IDataRegisters => ({ a, x, y }))(state)
     const parameter = getAddressingMode(bus, instruction.addressingMode, operand, dataRegisters)
-    const pc = state.pc + instruction.size
 
-    console.log(instruction)
-    console.log(operand)
-    console.log(parameter)
-    console.log(pc)
+    const preExecuteState = {
+        ...state,
+        pc: state.pc + instruction.size,
+        cycles: instruction.cycles
+    }
+
+    const operation = getOperation(instruction)
+    return operation(preExecuteState, bus, parameter)
 }

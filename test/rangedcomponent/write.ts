@@ -1,13 +1,13 @@
-import * as chai from "chai"
-import write from "../../src/rangedcomponent/pure/write"
-import sinon = require("sinon")
+import * as chai from 'chai'
+import write from '../../src/rangedcomponent/pure/write'
+import sinon = require('sinon')
 import * as sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 const expect = chai.expect
 
 describe('rangedComponent.write', () => {
-    [0x9f, 0x111].forEach(address =>
-        it(`should not write if address is outside wrapped component\'s address range (${address})`, () => {
+    ;[0x9f, 0x111].forEach(address =>
+        it(`should not write if address is outside wrapped component's address range (${address})`, () => {
             const writeStub = sinon.stub()
             const range = { from: 0x100, to: 0x110 }
             const previous = {
@@ -25,10 +25,9 @@ describe('rangedComponent.write', () => {
             expect(actual.write).to.be.false
             expect(writeStub).not.to.have.been.called
         })
-    );
-
-    [0x100, 0x10a, 0x110].forEach(address =>
-        it(`should return wrapped component\'s write result if address inside range (${address})`, () => {
+    )
+    ;[0x100, 0x10a, 0x110].forEach(address =>
+        it(`should return wrapped component's write result if address inside range (${address})`, () => {
             const writeStub = sinon.stub()
             const range = { from: 0x100, to: 0x110 }
             const previous = {

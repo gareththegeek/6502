@@ -10,6 +10,8 @@ import connect from '../state/connect'
 import fetchOperand from './pure/fetchOperand'
 import addressingMode from './pure/getAddressingMode'
 import ADDRESSING_MODE_TABLE from './pure/addressingModes/table'
+import getOperation from './pure/getoperation'
+import OPERATION_TABLE from './pure/operations/table'
 
 export default (bus: IBus): I6502 =>
     connect(
@@ -19,6 +21,7 @@ export default (bus: IBus): I6502 =>
                 fetchInstruction(),
                 fetchOperand(),
                 addressingMode(ADDRESSING_MODE_TABLE),
+                getOperation(OPERATION_TABLE),
                 bus
             ),
             irq: irq(),

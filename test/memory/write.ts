@@ -1,7 +1,7 @@
-import { expect } from "chai"
-import write from "../../src/memory/pure/write"
-import getPageIndex from "../../src/memory/pure/getPageIndex"
-import getPageAddress from "../../src/memory/pure/getPageAddress"
+import { expect } from 'chai'
+import write from '../../src/memory/pure/write'
+import getPageIndex from '../../src/memory/pure/getPageIndex'
+import getPageAddress from '../../src/memory/pure/getPageAddress'
 
 describe('memory.write', () => {
     it('should update the value at the specified address accounting for memory mapped range', () => {
@@ -11,11 +11,7 @@ describe('memory.write', () => {
         const unexpected = expected + 1
 
         const state = {
-            pages: [
-                { data: [] },
-                { data: [5, 4, unexpected, 2, 1] },
-                { data: [] }
-            ],
+            pages: [{ data: [] }, { data: [5, 4, unexpected, 2, 1] }, { data: [] }],
             value: null as number,
             read: false,
             write: false
@@ -38,11 +34,7 @@ describe('memory.write', () => {
         const unexpected = expected + 1
 
         const state = {
-            pages: [
-                { data: [] },
-                { data: [5, 4, expected, 2, 1] },
-                { data: [] }
-            ],
+            pages: [{ data: [] }, { data: [5, 4, expected, 2, 1] }, { data: [] }],
             value: null as number,
             read: false,
             write: false

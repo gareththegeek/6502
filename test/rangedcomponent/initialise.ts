@@ -1,8 +1,8 @@
-import * as chai from "chai"
-import initialise from "../../src/rangedcomponent/pure/initialise"
-import sinon = require("sinon")
-import * as sinonChai from "sinon-chai"
-chai.use(sinonChai);
+import * as chai from 'chai'
+import initialise from '../../src/rangedcomponent/pure/initialise'
+import sinon = require('sinon')
+import * as sinonChai from 'sinon-chai'
+chai.use(sinonChai)
 const expect = chai.expect
 
 describe('rangedComponent.initialise', () => {

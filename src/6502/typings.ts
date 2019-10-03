@@ -15,3 +15,5 @@ export type TGetAddressingMode = (
     operand: Array<number>,
     registers: IDataRegisters
 ) => number
+export type TGetOperation = (instruction: IInstruction) => TOperation
+export type TOperation = (state: IState, bus: IBus, parameter: number) => IState

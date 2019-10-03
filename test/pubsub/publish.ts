@@ -37,10 +37,7 @@ describe('pubsub.publish', () => {
 
     it('should return result of all handlers', () => {
         const expected = [7, 8]
-        const stubs = [
-            sinon.stub().returns(expected[0]),
-            sinon.stub().returns(expected[1])
-        ]
+        const stubs = [sinon.stub().returns(expected[0]), sinon.stub().returns(expected[1])]
         const state = {
             subscriptions: {
                 TEST_MESSAGE: stubs
