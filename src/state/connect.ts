@@ -7,5 +7,6 @@ export default <T>(target: { [key: string]: any }, store: IStore<T>): { [key: st
     Object.keys(target).map(
         key => (result[key] = typeof target[key] === 'function' ? connectPure(store, target[key]) : target[key])
     )
+    result.store = store
     return result
 }
