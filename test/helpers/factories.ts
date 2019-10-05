@@ -1,4 +1,14 @@
 import IState from "../../src/6502/state/istate";
+import IRom from "../../src/rom/irom";
+import IMemory from "../../src/memory/IMemory";
+import I6502 from "../../src/6502/I6502";
+import pubSubFactory from '../../src/pubsub/factory'
+import busFactory from '../../src/bus/factory'
+import cpuFactory from '../../src/6502/factory'
+import memoryFactory from '../../src/memory/factory'
+import romFactory from '../../src/rom/factory'
+import rangeFactory from '../../src/rangedcomponent/factory'
+import IRangedComponent from "../../src/rangedcomponent/irangedcomponent";
 
 export const build6502State = (): IState => ({
     pc: 1,
@@ -18,3 +28,23 @@ export const build6502State = (): IState => ({
     initialised: true,
     cycles: 7
 })
+
+export interface I6502System {
+    cpu: I6502,
+    memory: IRangedComponent,
+    rom: IRangedComponent
+}
+
+export const build6502system = (): I6502System => {
+    const pubsub = pubSubFactory()
+    const bus = busFactory(pubsub)
+    const cpu = cpuFactory(bus)
+    const memory = rangeFactory(pubsub, memoryFactory({ from: 0x2000, to: 0x4000 }))
+    const rom = rangeFactory(pubsub, romFactory({ from: 0xff00, to: 0xffff }))
+
+    return {
+        cpu,
+        memory,
+        rom
+    }
+}
