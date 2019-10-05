@@ -26,6 +26,10 @@ describe('Integration', () => {
                 { mode: 'zero-page,x', instructionCount: 2, program: [0xa2, 0x02, 0xb5, 0x01], zeroPage: [5, 6, 7, 8, 9], expectation: { a: 8, x: 2 } },
                 // ldy #$02 ldx $01,y
                 { mode: 'zero-page,y', instructionCount: 2, program: [0xa0, 0x02, 0xb6, 0x01], zeroPage: [5, 6, 7, 8, 9], expectation: { x: 8, y: 2 } },
+                // ldx #$02 lda ($01,x)
+                { mode: '(ind,x)', instructionCount: 2, program: [0xa2, 0x02, 0xa1, 0x01], zeroPage: [5, 6, 7, 0x04, 0x20], memory: [9, 8, 7, 6, 5, 4], expectation: { a: 5, x: 2 } },
+                // ldy #$02 lda ($01),y
+                { mode: '(ind),y', instructionCount: 2, program: [0xa0, 0x02, 0xb1, 0x01], zeroPage: [5, 0x02, 0x20, 8, 9], memory: [9, 8, 7, 6, 5, 4], expectation: { a: 5, y: 2 } },
             ].forEach(item => {
                 it(`should execute lda with ${item.mode} addressing mode`, () => {
                     const system = build6502system()

@@ -105,7 +105,8 @@ export const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
     0xad: new Instruction(0xad, 'LDA', 'ABS', 3, 4),
     0xae: new Instruction(0xae, 'LDX', 'ABS', 3, 4),
     0xb0: new Instruction(0xb0, 'BCS', 'Relative', 2, 2, false, true),
-    0xb1: new Instruction(0xb1, 'LDA', '(IND),Y', 2, 5, true),
+    0xb1: new Instruction(0xb1, 'LDA', '(IND),Y', 2, 6),
+    // 0xb2: new Instruction(0xb2, 'LDA', '(IND)', 2, 5), - not supported by vanilla 6502
     0xb4: new Instruction(0xb4, 'LDY', 'ZP,X', 2, 4),
     0xb5: new Instruction(0xb5, 'LDA', 'ZP,X', 2, 4),
     0xb6: new Instruction(0xb6, 'LDX', 'ZP,Y', 2, 4),
