@@ -75,5 +75,16 @@ describe('Integration', () => {
                 })
             })
         })
+
+        describe('jmp', () => {
+            [
+                // jmp $2004
+                { name: 'indirect', instructionCount: 1, program: [0x6c, 0x04, 0x20], memory: [0, 1, 2, 3, 0x34, 0x12], expectation: { pc: 0x1234 } }
+            ].forEach(item => {
+                it(`should execute jmp with ${item.name} addressing mode`, () => {
+                    testProgram(item)
+                })
+            })
+        })
     })
 })
