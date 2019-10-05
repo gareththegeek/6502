@@ -1,4 +1,4 @@
-import getPageAddress from '../../src/memory/pure/getPageAddress'
+import getPageAddress from '../../../src/memory/pure/getPageAddress'
 import { expect } from 'chai'
 
 describe('memory.getPageAddress', () => {

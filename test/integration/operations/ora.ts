@@ -7,7 +7,7 @@ import romFactory from '../../../src/rom/factory'
 import rangeFactory from '../../../src/rangedcomponent/factory'
 import I6502 from "../../../src/6502/I6502"
 
-describe('6502.and integration', () => {
+describe('6502.or integration', () => {
     const build = () => {
         const pubsub = pubSubFactory()
         const bus = busFactory(pubsub)
@@ -33,7 +33,7 @@ describe('6502.and integration', () => {
         cpu.clock()
     }
 
-    it('should ', () => {
+    it('should correctly execute the ora command with immediate addressing', () => {
         const fixture = build()
         fixture.memory.initialise(0x1)
         fixture.rom.initialise([0x09, 0xf0, 0xfa, 0xff])

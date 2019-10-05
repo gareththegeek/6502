@@ -1,4 +1,4 @@
-import getPageIndex from '../../src/memory/pure/getPageIndex'
+import getPageIndex from '../../../src/memory/pure/getPageIndex'
 import { expect } from 'chai'
 
 describe('memory.getPageIndex', () => {

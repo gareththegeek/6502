@@ -1,5 +1,5 @@
 import * as sinon from 'sinon'
-import publish from '../../src/pubsub/pure/publish'
+import publish from '../../../src/pubsub/pure/publish'
 import { expect } from 'chai'
 
 describe('pubsub.publish', () => {

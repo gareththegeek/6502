@@ -12,13 +12,14 @@ import addressingMode from './pure/getAddressingMode'
 import ADDRESSING_MODE_TABLE from './pure/addressingModes/table'
 import getOperation from './pure/getoperation'
 import OPERATION_TABLE from './pure/operations/table'
+import INSTRUCTION_TABLE from './pure/instructiontable'
 
 export default (bus: IBus): I6502 =>
     connect(
         {
             clock: clock(
                 initialise(bus),
-                fetchInstruction(),
+                fetchInstruction(INSTRUCTION_TABLE),
                 fetchOperand(),
                 addressingMode(ADDRESSING_MODE_TABLE),
                 getOperation(OPERATION_TABLE),

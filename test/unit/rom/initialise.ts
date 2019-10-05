@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import initialise from '../../src/rom/pure/initialise'
+import initialise from '../../../src/rom/pure/initialise'
 
 describe('rom.initialise', () => {
     it('should return state containing specified data', () => {

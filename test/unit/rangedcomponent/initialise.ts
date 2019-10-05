@@ -1,12 +1,12 @@
 import * as chai from 'chai'
-import initialise from '../../src/rangedcomponent/pure/initialise'
+import initialise from '../../../src/rangedcomponent/pure/initialise'
 import sinon = require('sinon')
 import * as sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 const expect = chai.expect
 
 describe('rangedComponent.initialise', () => {
-    it('should ', () => {
+    it('should call wrapped component initialise', () => {
         const component = {
             range: { from: 0x2000, to: 0x2100 },
             initialise: sinon.stub(),

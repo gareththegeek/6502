@@ -23,7 +23,7 @@ export default (
     }
 
     if (!state.initialised) {
-        return initialise(bus)
+        return initialise()
     }
     //TODO extra cycles
     const instruction = fetchInstruction(bus, state.pc)

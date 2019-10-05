@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import write from '../../src/memory/pure/write'
-import getPageIndex from '../../src/memory/pure/getPageIndex'
-import getPageAddress from '../../src/memory/pure/getPageAddress'
+import write from '../../../src/memory/pure/write'
+import getPageIndex from '../../../src/memory/pure/getPageIndex'
+import getPageAddress from '../../../src/memory/pure/getPageAddress'
 
 describe('memory.write', () => {
     it('should update the value at the specified address accounting for memory mapped range', () => {

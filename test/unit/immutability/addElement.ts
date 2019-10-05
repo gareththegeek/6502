@@ -1,4 +1,4 @@
-import addElement from '../../src/immutability/addElement'
+import addElement from '../../../src/immutability/addElement'
 import { expect } from 'chai'
 
 describe('immutability.addElement', () => {

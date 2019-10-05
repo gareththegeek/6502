@@ -1,4 +1,4 @@
-import initialise from '../../src/memory/pure/initialise'
+import initialise from '../../../src/memory/pure/initialise'
 import { expect } from 'chai'
 
 describe('memory.initialise', () => {

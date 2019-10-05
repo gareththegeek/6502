@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import subscribe from '../../src/pubsub/pure/subscribe'
-import factory from '../../src/pubsub/state/factory'
+import subscribe from '../../../src/pubsub/pure/subscribe'
+import factory from '../../../src/pubsub/state/factory'
 
 describe('pubsub.subscribe', () => {
     it('should add a subscription for the specified message type', () => {

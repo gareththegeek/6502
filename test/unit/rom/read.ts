@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import read from '../../src/rom/pure/read'
+import read from '../../../src/rom/pure/read'
 
 describe('rom.read', () => {
     it('should return data at specified address accounting from addressing range', () => {

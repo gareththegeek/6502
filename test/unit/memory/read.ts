@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import read from '../../src/memory/pure/read'
-import getPageIndex from '../../src/memory/pure/getPageIndex'
-import getPageAddress from '../../src/memory/pure/getPageAddress'
+import read from '../../../src/memory/pure/read'
+import getPageIndex from '../../../src/memory/pure/getPageIndex'
+import getPageAddress from '../../../src/memory/pure/getPageAddress'
 
 describe('memory.read', () => {
     it('should not mutate paged memory', () => {
