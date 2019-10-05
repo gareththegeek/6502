@@ -53,5 +53,16 @@ describe('Integration', () => {
                 })
             })
         })
+
+        describe('clc', () => {
+            [
+                // lda #$0x80; asl a; clc
+                { name: 'implied', instructionCount: 3, program: [0xa9, 0x80, 0x0a, 0x18], expectation: { status: { carry: false } } }
+            ].forEach(item => {
+                it(`should execute clc with ${item.name} addressing mode`, () => {
+                    testProgram(item)
+                })
+            })
+        })
     })
 })
