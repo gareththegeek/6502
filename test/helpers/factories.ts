@@ -1,6 +1,4 @@
 import IState from "../../src/6502/state/istate";
-import IRom from "../../src/rom/irom";
-import IMemory from "../../src/memory/IMemory";
 import I6502 from "../../src/6502/I6502";
 import pubSubFactory from '../../src/pubsub/factory'
 import busFactory from '../../src/bus/factory'
@@ -32,6 +30,7 @@ export const build6502State = (): IState => ({
 export interface I6502System {
     cpu: I6502,
     memory: IRangedComponent,
+    zeroPage: IRangedComponent
     rom: IRangedComponent
 }
 
@@ -40,11 +39,13 @@ export const build6502system = (): I6502System => {
     const bus = busFactory(pubsub)
     const cpu = cpuFactory(bus)
     const memory = rangeFactory(pubsub, memoryFactory({ from: 0x2000, to: 0x4000 }))
+    const zeroPage = rangeFactory(pubsub, memoryFactory({ from: 0x00, to: 0xff }))
     const rom = rangeFactory(pubsub, romFactory({ from: 0xff00, to: 0xffff }))
 
     return {
         cpu,
         memory,
+        zeroPage,
         rom
     }
 }

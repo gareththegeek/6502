@@ -18,5 +18,5 @@ export const loadRom = (rom: IRangedComponent, program: Array<number>): void => 
 }
 
 export const loadMemory = (memory: IRangedComponent, data: Array<number>): void => {
-    data.forEach((byte, index) => memory.write({ address: 0x2000 + index, value: byte }))
+    data.forEach((byte, index) => memory.write({ address: memory.range.from + index, value: byte }))
 }
