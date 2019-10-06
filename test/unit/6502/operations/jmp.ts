@@ -1,25 +1,18 @@
 import jmp from "../../../../src/6502/pure/operations/jmp"
-import { build6502State } from "../../../helpers/factories"
-import IBus from "../../../../src/bus/ibus"
-import { expect } from "chai"
+import { testOperation } from "../../../helpers/6502"
+import * as chai from "chai"
+import * as chaiSubset from 'chai-subset'
+chai.use(chaiSubset)
+const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
         describe('jmp', () => {
             it('should set program counter equal to parameter', () => {
-                const expected = 0x1234
-                const previous = build6502State()
-                previous.pc = 0x4321
+                const actual = testOperation(jmp(), { pc: 0x4321 }, {}, 0x1234)
 
-                const uut = jmp()
-                const actual = uut(previous, {} as IBus, expected)
-
-                expect(actual).to.be.deep.equal({
-                    ...previous,
-                    pc: expected,
-                    status: {
-                        ...previous.status
-                    }
+                expect(actual).to.containSubset({
+                    pc: 0x1234
                 })
             })
         })

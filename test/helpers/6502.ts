@@ -1,6 +1,9 @@
-import { I6502System, build6502system } from "./factories"
+import { I6502System, build6502system, build6502State } from "./factories"
 import IRangedComponent from "../../src/rangedcomponent/irangedcomponent"
 import { expect } from "chai"
+import { TOperation } from "../../src/6502/typings"
+import IBus from "../../src/bus/ibus"
+import IState from "../../src/6502/state/istate"
 
 export const initialiseSystem = (system: I6502System): void => {
     system.cpu.reset()
@@ -51,4 +54,18 @@ export const testProgram = (program: ITestProgram): void => {
         }
     }
     expect(system.cpu.store.state).to.containSubset(program.expectation)
+}
+
+export const testOperation = (op: TOperation, state: object, status: object, b: number): IState => {
+    const defaults = build6502State()
+    const previous = {
+        ...defaults,
+        ...state,
+        status: {
+            ...defaults.status,
+            ...status
+        }
+    }
+
+    return op(previous, {} as IBus, b)
 }

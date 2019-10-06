@@ -1,27 +1,16 @@
-import { build6502State } from "../../../helpers/factories"
 import * as chai from "chai"
 import * as chaiSubset from 'chai-subset'
 import adc from "../../../../src/6502/pure/operations/adc"
-import IBus from "../../../../src/bus/ibus"
-import IState from "../../../../src/6502/state/istate"
+import { testOperation } from "../../../helpers/6502"
 chai.use(chaiSubset)
 const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
         describe('adc', () => {
-            const testAdc = (a: number, b: number, carry: boolean): IState => {
-                const previous = build6502State()
-                previous.a = a
-                previous.status.carry = carry
-
-                const uut = adc()
-                return uut(previous, {} as IBus, b)
-            }
-
             it('should add parameter to the accumulator', () => {
-                const actual = testAdc(0x50, 0x10, false)
-                
+                const actual = testOperation(adc(), { a: 0x50 }, { carry: false }, 0x10)
+
                 expect(actual).to.containSubset({
                     a: 0x60,
                     status: {
@@ -34,7 +23,7 @@ describe('Unit', () => {
             })
 
             it('should add carry bit to the accumulator and carry out', () => {
-                const actual = testAdc(0x4f, 0xd0, true)
+                const actual = testOperation(adc(), { a: 0x4f }, { carry: true }, 0xd0)
 
                 expect(actual).to.containSubset({
                     a: 0x20,
@@ -48,7 +37,7 @@ describe('Unit', () => {
             })
 
             it('should set the zero flag when the result is zero', () => {
-                const actual = testAdc(0x10, 0xf0, false)
+                const actual = testOperation(adc(), { a: 0x10 }, { carry: false }, 0xf0)
 
                 expect(actual).to.containSubset({
                     a: 0x00,
@@ -62,7 +51,7 @@ describe('Unit', () => {
             })
 
             it('should set the negative flag when the result is negative', () => {
-                const actual = testAdc(0x10, 0xef, false)
+                const actual = testOperation(adc(), { a: 0x10 }, { carry: false }, 0xef)
 
                 expect(actual).to.containSubset({
                     a: 0xff,
@@ -86,7 +75,7 @@ describe('Unit', () => {
                 { a: 0xd0, b: 0xd0, result: 0xa0, overflow: false }
             ].forEach(item => {
                 it(`should set overflow to ${item.overflow} for ${item.a} + ${item.b} = ${item.result}`, () => {
-                    const actual = testAdc(item.a, item.b, false)
+                    const actual = testOperation(adc(), { a: item.a }, { carry: false }, item.b)
 
                     expect(actual).to.containSubset({
                         a: item.result,

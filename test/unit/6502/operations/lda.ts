@@ -1,27 +1,21 @@
 import lda from "../../../../src/6502/pure/operations/lda"
-import IBus from "../../../../src/bus/ibus"
-import { build6502State } from "../../../helpers/factories"
-import { expect } from "chai"
+import { testOperation } from "../../../helpers/6502"
+import * as chai from "chai"
+import * as chaiSubset from 'chai-subset'
+chai.use(chaiSubset)
+const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
         describe('lda', () => {
             it('should load parameter into accumulator and set negative and zero flags', () => {
-                const expected = 0x80
-                const previous = build6502State()
+                const actual = testOperation(lda(), {}, {}, 0x80)
 
-                const uut = lda()
-                const actual = uut(previous, {} as IBus, expected)
-
-                expect(actual).to.be.deep.equal({
-                    ...previous,
-                    ...{
-                        a: expected,
-                        status: {
-                            ...previous.status,
-                            negative: true,
-                            zero: false
-                        }
+                expect(actual).to.containSubset({
+                    a: 0x80,
+                    status: {
+                        negative: true,
+                        zero: false
                     }
                 })
             })

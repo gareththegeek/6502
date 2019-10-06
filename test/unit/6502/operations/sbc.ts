@@ -1,26 +1,15 @@
-import { build6502State } from "../../../helpers/factories"
+import sbc from "../../../../src/6502/pure/operations/sbc"
+import { testOperation } from "../../../helpers/6502"
 import * as chai from "chai"
 import * as chaiSubset from 'chai-subset'
-import sbc from "../../../../src/6502/pure/operations/sbc"
-import IBus from "../../../../src/bus/ibus"
-import IState from "../../../../src/6502/state/istate"
 chai.use(chaiSubset)
 const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
         describe('sbc', () => {
-            const testSbc = (a: number, b: number, carry: boolean): IState => {
-                const previous = build6502State()
-                previous.a = a
-                previous.status.carry = carry
-
-                const uut = sbc()
-                return uut(previous, {} as IBus, b)
-            }
-
             it('should subtract parameter from the accumulator', () => {
-                const actual = testSbc(0x50, 0x10, false)
+                const actual = testOperation(sbc(), { a: 0x50 }, { carry: false }, 0x10)
                 
                 expect(actual).to.containSubset({
                     a: 0x40,
@@ -34,7 +23,7 @@ describe('Unit', () => {
             })
 
             it('should subtract carry bit from the accumulator', () => {
-                const actual = testSbc(0x50, 0x0f, true)
+                const actual = testOperation(sbc(), { a: 0x50 }, { carry: true }, 0x0f)
 
                 expect(actual).to.containSubset({
                     a: 0x40,
@@ -48,7 +37,7 @@ describe('Unit', () => {
             })
 
             it('should set the zero flag when the result is zero', () => {
-                const actual = testSbc(0x10, 0x10, false)
+                const actual = testOperation(sbc(), { a: 0x10 }, { carry: false }, 0x10)
 
                 expect(actual).to.containSubset({
                     a: 0x00,
@@ -62,7 +51,7 @@ describe('Unit', () => {
             })
 
             it('should set the negative flag when the result is negative and borrow out', () => {
-                const actual = testSbc(0xd0, 0xf0, false)
+                const actual = testOperation(sbc(), { a: 0xd0 }, { carry: false }, 0xf0)
 
                 expect(actual).to.containSubset({
                     a: 0xe0,
@@ -86,7 +75,7 @@ describe('Unit', () => {
                 { a: 0xd0, b: 0x30, result: 0xa0, overflow: false }
             ].forEach(item => {
                 it(`should set overflow to ${item.overflow} for ${item.a} - ${item.b} = ${item.result}`, () => {
-                    const actual = testSbc(item.a, item.b, false)
+                    const actual = testOperation(sbc(), { a: item.a }, { carry: false }, item.b)
 
                     expect(actual).to.containSubset({
                         a: item.result,

@@ -1,23 +1,19 @@
 import asl from "../../../../src/6502/pure/operations/asl"
-import { build6502State } from "../../../helpers/factories"
-import IBus from "../../../../src/bus/ibus"
-import { expect } from "chai"
+import { testOperation } from "../../../helpers/6502"
+import * as chai from "chai"
+import * as chaiSubset from 'chai-subset'
+chai.use(chaiSubset)
+const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
         describe('asl', () => {
             it('should shift data left one bit with lost bit going into carry flag', () => {
-                const expected = 0x54
-                const previous = build6502State()
+                const actual = testOperation(asl(), {}, {}, 0xaa)
 
-                const uut = asl()
-                const actual = uut(previous, {} as IBus, 0xaa)
-
-                expect(actual).to.be.deep.equal({
-                    ...previous,
-                    a: expected,
+                expect(actual).to.containSubset({
+                    a: 0x54,
                     status: {
-                        ...previous.status,
                         negative: false,
                         zero: false,
                         carry: true
