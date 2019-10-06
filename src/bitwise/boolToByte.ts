@@ -1,0 +1,1 @@
+export default (bool: boolean) => bool ? 1 : 0

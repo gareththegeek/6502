@@ -1,0 +1,1 @@
+export default (byte: number) => (byte & 0x01) === 0x01

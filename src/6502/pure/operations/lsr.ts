@@ -1,6 +1,7 @@
 import IState from '../../state/istate'
 import IBus from '../../../bus/ibus'
 import isZero from '../status/iszero'
+import isBitZeroSet from '../../../bitwise/isBitZeroSet'
 
 export default () => (state: IState, _: IBus, parameter: number): IState => {
     const next = parameter >> 1
@@ -11,7 +12,7 @@ export default () => (state: IState, _: IBus, parameter: number): IState => {
             ...state.status,
             zero: isZero(next),
             negative: false,
-            carry: (parameter & 0x01) === 0x01
+            carry: isBitZeroSet(parameter)
         }
     }
 }

@@ -2,9 +2,10 @@ import IState from '../../state/istate'
 import IBus from '../../../bus/ibus'
 import isNegative from '../status/isnegative'
 import isZero from '../status/iszero'
+import toByte from '../../../bitwise/toByte'
 
 export default () => (state: IState, _: IBus, parameter: number): IState => {
-    const next = (parameter << 1) & 0xff
+    const next = toByte(parameter << 1)
     return {
         ...state,
         a: next,

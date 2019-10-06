@@ -67,8 +67,8 @@ describe('Integration', () => {
 
         describe('bne', () => {
             [
-                // bne $04
-                { name: 'relative', instructionCount: 1, program: [0xd0, 0x04], expectation: { pc: 0xff06 } }
+                // bne $-04
+                { name: 'relative', instructionCount: 1, program: [0xd0, 0xfc], expectation: { pc: 0xfefe } }
             ].forEach(item => {
                 it(`should execute bne with ${item.name} addressing mode`, () => {
                     testProgram(item)
