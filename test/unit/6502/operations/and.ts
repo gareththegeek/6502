@@ -1,7 +1,7 @@
-import and from "../../../../src/6502/pure/operations/and"
-import * as chai from "chai"
+import and from '../../../../src/6502/pure/operations/and'
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
-import { testOperation } from "../../../helpers/6502"
+import { testOperation } from '../../../helpers/6502'
 chai.use(chaiSubset)
 const expect = chai.expect
 

@@ -1,5 +1,5 @@
-import IState from "./state/istate";
-import IStore from "../state/istore";
+import IState from './state/istate'
+import IStore from '../state/istore'
 
 export default interface I6502 {
     store: IStore<IState>

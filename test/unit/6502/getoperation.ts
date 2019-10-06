@@ -1,7 +1,7 @@
-import { expect } from "chai"
-import getOperation from "../../../src/6502/pure/getoperation"
-import sinon = require("sinon")
-import IInstruction from "../../../src/6502/state/iinstruction"
+import { expect } from 'chai'
+import getOperation from '../../../src/6502/pure/getoperation'
+import sinon = require('sinon')
+import IInstruction from '../../../src/6502/state/iinstruction'
 
 describe('Unit', () => {
     describe('6502', () => {
@@ -10,8 +10,8 @@ describe('Unit', () => {
                 const expected = sinon.stub()
                 const unexpected = sinon.stub()
                 const table = {
-                    'expected': expected,
-                    'unexpected': unexpected
+                    expected: expected,
+                    unexpected: unexpected
                 }
                 const instruction = {
                     mnemonic: 'expected'

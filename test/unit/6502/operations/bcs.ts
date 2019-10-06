@@ -1,6 +1,6 @@
-import bcs from "../../../../src/6502/pure/operations/bcs"
-import { testOperation } from "../../../helpers/6502"
-import * as chai from "chai"
+import bcs from '../../../../src/6502/pure/operations/bcs'
+import { testOperation } from '../../../helpers/6502'
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
 chai.use(chaiSubset)
 const expect = chai.expect

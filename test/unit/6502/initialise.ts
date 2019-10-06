@@ -1,8 +1,8 @@
-import { expect } from "chai"
-import initialise from "../../../src/6502/pure/initialise"
-import sinon = require("sinon")
-import IBus from "../../../src/bus/ibus"
-import IBusReadProps from "../../../src/bus/state/ibusreadprops"
+import { expect } from 'chai'
+import initialise from '../../../src/6502/pure/initialise'
+import sinon = require('sinon')
+import IBus from '../../../src/bus/ibus'
+import IBusReadProps from '../../../src/bus/state/ibusreadprops'
 
 describe('Unit', () => {
     describe('6502', () => {

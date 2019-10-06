@@ -1,4 +1,4 @@
-import IInstruction from "../state/iinstruction";
+import IInstruction from '../state/iinstruction'
 import Instruction from '../state/instruction'
 
 export const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {

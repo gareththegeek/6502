@@ -1,6 +1,6 @@
-import sbc from "../../../../src/6502/pure/operations/sbc"
-import { testOperation } from "../../../helpers/6502"
-import * as chai from "chai"
+import sbc from '../../../../src/6502/pure/operations/sbc'
+import { testOperation } from '../../../helpers/6502'
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
 chai.use(chaiSubset)
 const expect = chai.expect
@@ -10,7 +10,7 @@ describe('Unit', () => {
         describe('sbc', () => {
             it('should subtract parameter from the accumulator', () => {
                 const actual = testOperation(sbc(), { a: 0x50 }, { carry: false }, 0x10)
-                
+
                 expect(actual).to.containSubset({
                     a: 0x40,
                     status: {
@@ -62,9 +62,8 @@ describe('Unit', () => {
                         overflow: false
                     }
                 })
-            });
-
-            [
+            })
+            ;[
                 { a: 0x50, b: 0xf0, result: 0x60, overflow: false },
                 { a: 0x50, b: 0xb0, result: 0xa0, overflow: true },
                 { a: 0x50, b: 0x70, result: 0xe0, overflow: false },

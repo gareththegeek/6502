@@ -1,6 +1,6 @@
-import beq from "../../../../src/6502/pure/operations/beq"
-import { testOperation } from "../../../helpers/6502"
-import * as chai from "chai"
+import beq from '../../../../src/6502/pure/operations/beq'
+import { testOperation } from '../../../helpers/6502'
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
 chai.use(chaiSubset)
 const expect = chai.expect
@@ -10,7 +10,7 @@ describe('Unit', () => {
         describe('beq', () => {
             it('should add parameter to program counter if zero status flag is set', () => {
                 const actual = testOperation(beq(), { pc: 0x1000 }, { zero: true }, 0x06)
-                
+
                 expect(actual).to.containSubset({
                     pc: 0x1006
                 })
@@ -18,7 +18,7 @@ describe('Unit', () => {
 
             it('should not add parameter to program counter if zero status flag is not set', () => {
                 const actual = testOperation(beq(), { pc: 0x1000 }, { zero: false }, 0x06)
-                
+
                 expect(actual).to.containSubset({
                     pc: 0x1000
                 })

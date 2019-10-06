@@ -27,29 +27,29 @@ describe('Unit', () => {
                     expect(readStub).not.to.have.been.called
                 })
             )
-                ;[0x100, 0x10a, 0x110].forEach(address =>
-                    it(`should return wrapped component's read result if address inside range (${address})`, () => {
-                        const readStub = sinon.stub()
-                        const range = { from: 0x100, to: 0x110 }
-                        const previous = {
-                            value: 1,
-                            read: true,
-                            write: true
-                        }
-                        const expected = {
-                            value: 23,
-                            read: true,
-                            write: false
-                        }
-                        readStub.returns(expected)
+            ;[0x100, 0x10a, 0x110].forEach(address =>
+                it(`should return wrapped component's read result if address inside range (${address})`, () => {
+                    const readStub = sinon.stub()
+                    const range = { from: 0x100, to: 0x110 }
+                    const previous = {
+                        value: 1,
+                        read: true,
+                        write: true
+                    }
+                    const expected = {
+                        value: 23,
+                        read: true,
+                        write: false
+                    }
+                    readStub.returns(expected)
 
-                        const uut = read(range, readStub)
-                        const actual = uut(previous, { address })
+                    const uut = read(range, readStub)
+                    const actual = uut(previous, { address })
 
-                        expect(actual).to.be.deep.equal(expected)
-                        expect(readStub).to.have.been.calledWith({ address })
-                    })
-                )
+                    expect(actual).to.be.deep.equal(expected)
+                    expect(readStub).to.have.been.calledWith({ address })
+                })
+            )
         })
     })
 })

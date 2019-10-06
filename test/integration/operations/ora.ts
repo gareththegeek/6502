@@ -1,6 +1,6 @@
-import { expect } from "chai"
+import { expect } from 'chai'
 import { build6502system } from '../../helpers/factories'
-import { initialiseSystem, loadRom } from "../../helpers/6502"
+import { initialiseSystem, loadRom } from '../../helpers/6502'
 
 describe('Integration', () => {
     describe('6502', () => {

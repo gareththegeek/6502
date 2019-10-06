@@ -1,6 +1,6 @@
-import { expect } from "chai"
-import reset from "../../../src/6502/pure/reset"
-import { build6502State } from "../../helpers/factories"
+import { expect } from 'chai'
+import reset from '../../../src/6502/pure/reset'
+import { build6502State } from '../../helpers/factories'
 
 describe('Unit', () => {
     describe('6502', () => {

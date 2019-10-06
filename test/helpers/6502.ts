@@ -1,9 +1,9 @@
-import { I6502System, build6502system, build6502State } from "./factories"
-import IRangedComponent from "../../src/rangedcomponent/irangedcomponent"
-import { expect } from "chai"
-import { TOperation } from "../../src/6502/typings"
-import IBus from "../../src/bus/ibus"
-import IState from "../../src/6502/state/istate"
+import { I6502System, build6502system, build6502State } from './factories'
+import IRangedComponent from '../../src/rangedcomponent/irangedcomponent'
+import { expect } from 'chai'
+import { TOperation } from '../../src/6502/typings'
+import IBus from '../../src/bus/ibus'
+import IState from '../../src/6502/state/istate'
 
 export const initialiseSystem = (system: I6502System): void => {
     system.cpu.reset()
@@ -17,7 +17,7 @@ export const initialiseSystem = (system: I6502System): void => {
 }
 
 export const loadRom = (rom: IRangedComponent, program: Array<number>): void => {
-    const data = [...program, ...(new Array(0xfc - program.length).fill(0)), 0x00, 0xff]
+    const data = [...program, ...new Array(0xfc - program.length).fill(0), 0x00, 0xff]
     rom.initialise(data)
 }
 
@@ -26,11 +26,11 @@ export const loadMemory = (memory: IRangedComponent, data: Array<number>): void 
 }
 
 export interface ITestProgram {
-    name: string,
-    instructionCount: number,
-    program: Array<number>,
-    memory?: Array<number>,
-    zeroPage?: Array<number>,
+    name: string
+    instructionCount: number
+    program: Array<number>
+    memory?: Array<number>
+    zeroPage?: Array<number>
     expectation: object
 }
 

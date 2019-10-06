@@ -1,7 +1,7 @@
 import * as chai from 'chai'
 import * as sinonChai from 'sinon-chai'
-import fetchOperand from "../../../src/6502/pure/fetchOperand"
-import sinon = require("sinon")
+import fetchOperand from '../../../src/6502/pure/fetchOperand'
+import sinon = require('sinon')
 import IBus from '../../../src/bus/ibus'
 import IBusReadProps from '../../../src/bus/state/ibusreadprops'
 chai.use(sinonChai)

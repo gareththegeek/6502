@@ -1,9 +1,9 @@
-import fetchInstruction from "../../../src/6502/pure/fetchInstruction"
-import sinon = require("sinon")
+import fetchInstruction from '../../../src/6502/pure/fetchInstruction'
+import sinon = require('sinon')
 import * as chai from 'chai'
 import * as sinonChai from 'sinon-chai'
-import Instruction from "../../../src/6502/state/instruction"
-import IBus from "../../../src/bus/ibus"
+import Instruction from '../../../src/6502/state/instruction'
+import IBus from '../../../src/bus/ibus'
 chai.use(sinonChai)
 const expect = chai.expect
 

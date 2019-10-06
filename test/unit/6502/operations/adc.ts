@@ -1,7 +1,7 @@
-import * as chai from "chai"
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
-import adc from "../../../../src/6502/pure/operations/adc"
-import { testOperation } from "../../../helpers/6502"
+import adc from '../../../../src/6502/pure/operations/adc'
+import { testOperation } from '../../../helpers/6502'
 chai.use(chaiSubset)
 const expect = chai.expect
 
@@ -62,9 +62,8 @@ describe('Unit', () => {
                         overflow: false
                     }
                 })
-            });
-
-            [
+            })
+            ;[
                 { a: 0x50, b: 0x10, result: 0x60, overflow: false },
                 { a: 0x50, b: 0x50, result: 0xa0, overflow: true },
                 { a: 0x50, b: 0x90, result: 0xe0, overflow: false },

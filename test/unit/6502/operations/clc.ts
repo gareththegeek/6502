@@ -1,6 +1,6 @@
-import clc from "../../../../src/6502/pure/operations/clc"
-import { testOperation } from "../../../helpers/6502"
-import * as chai from "chai"
+import clc from '../../../../src/6502/pure/operations/clc'
+import { testOperation } from '../../../helpers/6502'
+import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
 chai.use(chaiSubset)
 const expect = chai.expect

@@ -1,9 +1,9 @@
-import * as chai from "chai"
+import * as chai from 'chai'
 import * as sinonChai from 'sinon-chai'
-import sinon = require("sinon")
-import sta from "../../../../src/6502/pure/operations/sta"
-import { build6502State } from "../../../helpers/factories"
-import IBus from "../../../../src/bus/ibus"
+import sinon = require('sinon')
+import sta from '../../../../src/6502/pure/operations/sta'
+import { build6502State } from '../../../helpers/factories'
+import IBus from '../../../../src/bus/ibus'
 chai.use(sinonChai)
 const expect = chai.expect
 
