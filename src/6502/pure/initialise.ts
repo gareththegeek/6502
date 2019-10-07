@@ -2,12 +2,13 @@ import IState from '../state/istate'
 import { TInitialise } from '../typings'
 import IBus from '../../bus/ibus'
 import littleEndian from '../../bitwise/littleEndian'
+import { RESET_VECTOR } from '../state/vectors'
 
 const INITIALISATION_CYCLES = 6
 
 export default (bus: IBus): TInitialise => (): IState => {
-    const lo = bus.read({ address: 0xfffc })
-    const hi = bus.read({ address: 0xfffd })
+    const lo = bus.read({ address: RESET_VECTOR + 0 })
+    const hi = bus.read({ address: RESET_VECTOR + 1 })
     const pc = littleEndian([lo, hi])
     return {
         pc,

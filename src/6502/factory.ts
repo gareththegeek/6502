@@ -25,8 +25,8 @@ export default (bus: IBus): I6502 =>
                 getOperation(OPERATION_TABLE),
                 bus
             ),
-            irq: irq(),
-            nmi: nmi(),
+            irq: irq(bus),
+            nmi: nmi(bus),
             reset: reset()
         },
         { state: null }
