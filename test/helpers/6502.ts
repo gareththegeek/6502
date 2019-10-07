@@ -56,7 +56,7 @@ export const testProgram = (program: ITestProgram): void => {
     expect(system.cpu.store.state).to.containSubset(program.expectation)
 }
 
-export const testOperation = (op: TOperation, state: object, status: object, b: number): IState => {
+export const testOperation = (op: TOperation, state: object, status: object, b: number, bus?: IBus): IState => {
     const defaults = build6502State()
     const previous = {
         ...defaults,
@@ -67,5 +67,5 @@ export const testOperation = (op: TOperation, state: object, status: object, b: 
         }
     }
 
-    return op(previous, {} as IBus, b)
+    return op(previous, bus || {} as IBus, b)
 }
