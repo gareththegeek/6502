@@ -6,6 +6,7 @@ import asl from './asl'
 import bcc from './bcc'
 import beq from './beq'
 import bit from './bit'
+import bmi from './bmi'
 import bne from './bne'
 import bpl from './bpl'
 import bvc from './bvc'
@@ -50,14 +51,17 @@ import tsx from './tsx'
 import txa from './txa'
 import txs from './txs'
 import tya from './tya'
+import bcs from './bcs'
 
 export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     adc: adc(),
     and: and(),
     asl: asl(),
     bcc: bcc(),
+    bcs: bcs(),
     beq: beq(),
     bit: bit(),
+    bmi: bmi(),
     bne: bne(),
     bpl: bpl(),
     brk: brk(),
