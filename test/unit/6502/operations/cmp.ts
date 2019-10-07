@@ -12,6 +12,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x53 }, { zero: false, carry: false, negative: true }, 0x53)
 
                 expect(actual).to.containSubset({
+                    a: 0x53,
                     status: {
                         zero: true,
                         carry: true,
@@ -24,6 +25,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x53 }, { zero: true }, 0x52)
 
                 expect(actual).to.containSubset({
+                    a: 0x53,
                     status: {
                         zero: false
                     }
@@ -34,6 +36,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x53 }, { carry: false }, 0x52)
 
                 expect(actual).to.containSubset({
+                    a: 0x53,
                     status: {
                         carry: true
                     }
@@ -44,6 +47,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x53 }, { carry: true }, 0x54)
 
                 expect(actual).to.containSubset({
+                    a: 0x53,
                     status: {
                         carry: false
                     }
@@ -54,6 +58,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x53 }, { negative: false }, 0x54)
 
                 expect(actual).to.containSubset({
+                    a: 0x53,
                     status: {
                         negative: true
                     }
@@ -64,6 +69,7 @@ describe('Unit', () => {
                 const actual = testOperation(cmp(), { a: 0x55 }, { negative: true }, 0x54)
 
                 expect(actual).to.containSubset({
+                    a: 0x55,
                     status: {
                         negative: false
                     }
