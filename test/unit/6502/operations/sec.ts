@@ -1,4 +1,4 @@
-import clc from '../../../../src/6502/pure/operations/clc'
+import sec from '../../../../src/6502/pure/operations/sec'
 import { testOperation } from '../../../helpers/6502'
 import * as chai from 'chai'
 import * as chaiSubset from 'chai-subset'
@@ -7,13 +7,13 @@ const expect = chai.expect
 
 describe('Unit', () => {
     describe('6502', () => {
-        describe('clc', () => {
-            it('should clear carry flag without affecting other state', () => {
-                const actual = testOperation(clc(), {}, { carry: true }, 0x00)
+        describe('sec', () => {
+            it('should set carry flag without affecting other state', () => {
+                const actual = testOperation(sec(), {}, { carry: false }, 0x00)
 
                 expect(actual).to.containSubset({
                     status: {
-                        carry: false
+                        carry: true
                     }
                 })
             })

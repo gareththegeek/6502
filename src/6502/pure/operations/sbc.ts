@@ -7,7 +7,7 @@ import boolToByte from '../../../bitwise/boolToByte'
 import isOverflow from '../../../bitwise/isOverflow'
 
 export default () => (state: IState, _: IBus, parameter: number): IState => {
-    const carry = boolToByte(state.status.carry)
+    const carry = boolToByte(!state.status.carry)
     const next16 = state.a - parameter - carry
     const next8 = toByte(next16)
     return {
