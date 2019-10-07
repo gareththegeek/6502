@@ -52,6 +52,9 @@ import txa from './txa'
 import txs from './txs'
 import tya from './tya'
 import bcs from './bcs'
+import pha from './pha'
+import pla from './pla'
+import plp from './plp'
 
 export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     adc: adc(),
@@ -89,7 +92,10 @@ export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     lsr: lsr(),
     nop: nop(),
     ora: ora(),
+    pha: pha(),
     php: php(),
+    pla: pla(),
+    plp: plp(),
     rol: rol(),
     ror: ror(),
     rti: rti(),
