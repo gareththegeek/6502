@@ -6,8 +6,8 @@ export default () => (state: IState, _: IBus, parameter: number): IState => ({
     ...state,
     status: {
         ...state.status,
-        zero: (state.y === parameter),
-        carry: (state.y >= parameter),
+        zero: state.y === parameter,
+        carry: state.y >= parameter,
         negative: isNegative(state.y - parameter)
     }
 })

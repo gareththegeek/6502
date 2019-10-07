@@ -20,14 +20,20 @@ describe('Unit', () => {
                     read: sinon.stub()
                 }
 
-                const actual = testOperation(brk(), { pc: 0x1234, sp: 0xff }, {
-                    carry: false,
-                    zero: true,
-                    irqDisable: false,
-                    decimal: true,
-                    overflow: false,
-                    negative: true
-                }, 0x00, bus)
+                const actual = testOperation(
+                    brk(),
+                    { pc: 0x1234, sp: 0xff },
+                    {
+                        carry: false,
+                        zero: true,
+                        irqDisable: false,
+                        decimal: true,
+                        overflow: false,
+                        negative: true
+                    },
+                    0x00,
+                    bus
+                )
 
                 expect(writeStub.getCall(0).args[0]).to.be.deep.equal({ address: 0x01ff, value: 0x34 })
                 expect(writeStub.getCall(1).args[0]).to.be.deep.equal({ address: 0x01fe, value: 0x12 })
@@ -38,7 +44,7 @@ describe('Unit', () => {
             it('should set the program counter to the addressed stored by the IRQ vector', () => {
                 const bus = {
                     write: sinon.stub(),
-                    read: (props: IBusReadProps) => {
+                    read: (props: IBusReadProps): number => {
                         switch (props.address) {
                             case IRQ_VECTOR + 0:
                                 return 0x65

@@ -4,9 +4,10 @@ import isZero from '../status/iszero'
 import isNegative from '../status/isnegative'
 
 export default () => (state: IState, bus: IBus, parameter: number): IState => {
-    const value = bus.read({
-        address: parameter
-    }) - 1
+    const value =
+        bus.read({
+            address: parameter
+        }) - 1
     bus.write({
         address: parameter,
         value

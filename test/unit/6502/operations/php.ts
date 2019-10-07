@@ -10,11 +10,51 @@ const expect = chai.expect
 describe('Unit', () => {
     describe('6502', () => {
         describe('php', () => {
-            [
-                { status: { carry: true, zero: true, irqDisable: true, decimal: true, overflow: true, negative: true }, expectation: 0xff },
-                { status: { carry: false, zero: false, irqDisable: false, decimal: false, overflow: false, negative: false }, expectation: 0x30 },
-                { status: { carry: false, zero: true, irqDisable: false, decimal: true, overflow: false, negative: true }, expectation: 0xba },
-                { status: { carry: true, zero: false, irqDisable: true, decimal: false, overflow: true, negative: false }, expectation: 0x75 }
+            ;[
+                {
+                    status: {
+                        carry: true,
+                        zero: true,
+                        irqDisable: true,
+                        decimal: true,
+                        overflow: true,
+                        negative: true
+                    },
+                    expectation: 0xff
+                },
+                {
+                    status: {
+                        carry: false,
+                        zero: false,
+                        irqDisable: false,
+                        decimal: false,
+                        overflow: false,
+                        negative: false
+                    },
+                    expectation: 0x30
+                },
+                {
+                    status: {
+                        carry: false,
+                        zero: true,
+                        irqDisable: false,
+                        decimal: true,
+                        overflow: false,
+                        negative: true
+                    },
+                    expectation: 0xba
+                },
+                {
+                    status: {
+                        carry: true,
+                        zero: false,
+                        irqDisable: true,
+                        decimal: false,
+                        overflow: true,
+                        negative: false
+                    },
+                    expectation: 0x75
+                }
             ].forEach(item => {
                 it('should store the value in the status register at the address specified by stack pointer and decrement stack pointer', () => {
                     const writeStub = sinon.stub()

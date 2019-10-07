@@ -20,7 +20,7 @@ describe('Unit', () => {
                 const address = 0x5678
 
                 testOperation(stx(), { x: expected }, {}, address, bus)
-                
+
                 expect(writeStub).to.have.been.calledWith({ address, value: expected })
             })
         })

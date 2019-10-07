@@ -1,1 +1,1 @@
-export default (word: number): number => (word & 0xff)
+export default (word: number): number => word & 0xff

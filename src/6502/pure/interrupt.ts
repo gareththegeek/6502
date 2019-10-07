@@ -1,10 +1,10 @@
-import IState from "../state/istate";
-import IBus from "../../bus/ibus";
-import lowByte from "../../bitwise/lowByte";
-import highByte from "../../bitwise/highByte";
-import getStatusByte from "./getStatusByte";
-import littleEndian from "../../bitwise/littleEndian";
-import getStackAddress from "../../bitwise/getStackAddress";
+import IState from '../state/istate'
+import IBus from '../../bus/ibus'
+import lowByte from '../../bitwise/lowByte'
+import highByte from '../../bitwise/highByte'
+import getStatusByte from './getStatusByte'
+import littleEndian from '../../bitwise/littleEndian'
+import getStackAddress from '../../bitwise/getStackAddress'
 
 export default (state: IState, bus: IBus, vector: number, bflag: number): IState => {
     bus.write({ address: getStackAddress(state.sp - 0), value: lowByte(state.pc) })

@@ -67,5 +67,5 @@ export const testOperation = (op: TOperation, state: object, status: object, b: 
         }
     }
 
-    return op(previous, bus || {} as IBus, b)
+    return op(previous, bus || ({} as IBus), b)
 }

@@ -4,5 +4,4 @@ import interrupt from '../interrupt'
 import { B_BRK } from '../../state/bflags'
 import { BRK_VECTOR } from '../../state/vectors'
 
-export default () => (state: IState, bus: IBus, _: number): IState =>
-    interrupt(state, bus, BRK_VECTOR, B_BRK)
+export default () => (state: IState, bus: IBus, _: number): IState => interrupt(state, bus, BRK_VECTOR, B_BRK)

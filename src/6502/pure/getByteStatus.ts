@@ -1,4 +1,4 @@
-import IStatusRegister from "../state/istatusRegister";
+import IStatusRegister from '../state/istatusRegister'
 
 export default (byte: number): IStatusRegister => ({
     carry: (byte & 0x01) === 0x01,

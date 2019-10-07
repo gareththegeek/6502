@@ -1,4 +1,4 @@
-import IStatusRegister from "../state/istatusRegister";
+import IStatusRegister from '../state/istatusRegister'
 
 export default (status: IStatusRegister): number =>
     (status.carry ? 0x01 : 0x00) |

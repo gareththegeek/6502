@@ -19,7 +19,7 @@ describe('Unit', () => {
                 const expected = 0x12
 
                 const actual = testOperation(pha(), { a: expected, sp: 0x78 }, {}, 0x00, bus)
-                
+
                 expect(writeStub).to.have.been.calledWith({ address: 0x0178, value: expected })
                 expect(actual.sp).to.be.equal(0x78 - 1)
             })

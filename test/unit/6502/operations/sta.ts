@@ -2,7 +2,6 @@ import * as chai from 'chai'
 import * as sinonChai from 'sinon-chai'
 import sinon = require('sinon')
 import sta from '../../../../src/6502/pure/operations/sta'
-import { build6502State } from '../../../helpers/factories'
 import IBus from '../../../../src/bus/ibus'
 import { testOperation } from '../../../helpers/6502'
 chai.use(sinonChai)
@@ -21,7 +20,7 @@ describe('Unit', () => {
                 const address = 0x5678
 
                 testOperation(sta(), { a: expected }, {}, address, bus)
-                
+
                 expect(writeStub).to.have.been.calledWith({ address, value: expected })
             })
         })
