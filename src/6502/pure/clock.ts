@@ -39,6 +39,9 @@ export default (
     }
 
     //TODO extra cycles
+    //TODO address mirroring
+    //TODO check all ops for overflows e.g. 0xff + 1
+    //TODO implement h/w bugs
     const instruction = fetchInstruction(bus, state.pc)
     const operand = fetchOperand(bus, state.pc + 1, instruction.size - 1)
     const dataRegisters = (({ a, x, y }): IDataRegisters => ({ a, x, y }))(state)

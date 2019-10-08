@@ -20,6 +20,19 @@ describe('Unit', () => {
                     }
                 })
             })
+
+            it('should shift data right one bit with unset carry flag going into high bit as zero', () => {
+                const actual = testOperation(ror(), {}, { carry: false }, 0x54)
+
+                expect(actual).to.containSubset({
+                    a: 0x2a,
+                    status: {
+                        negative: false,
+                        zero: false,
+                        carry: false
+                    }
+                })
+            })
         })
     })
 })
