@@ -9,4 +9,6 @@ export default interface IState {
     status: IStatusRegister
     initialised: boolean
     cycles: number
+    irq: boolean
+    nmi: boolean
 }

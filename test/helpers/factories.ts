@@ -14,6 +14,8 @@ export const build6502State = (): IState => ({
     x: 3,
     y: 4,
     sp: 5,
+    irq: false,
+    nmi: false,
     status: {
         negative: true,
         overflow: true,

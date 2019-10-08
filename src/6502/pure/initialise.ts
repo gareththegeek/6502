@@ -16,6 +16,8 @@ export default (bus: IBus): TInitialise => (): IState => {
         x: 0,
         y: 0,
         sp: 0xff,
+        irq: false,
+        nmi: false,
         status: {
             negative: false,
             overflow: false,

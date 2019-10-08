@@ -13,20 +13,22 @@ import ADDRESSING_MODE_TABLE from './pure/addressingModes/table'
 import getOperation from './pure/getoperation'
 import OPERATION_TABLE from './pure/operations/table'
 import INSTRUCTION_TABLE from './pure/instructiontable'
+import interrupt from './pure/interrupt'
 
 export default (bus: IBus): I6502 =>
     connect(
         {
             clock: clock(
                 initialise(bus),
+                interrupt(),
                 fetchInstruction(INSTRUCTION_TABLE),
                 fetchOperand(),
                 addressingMode(ADDRESSING_MODE_TABLE),
                 getOperation(OPERATION_TABLE),
                 bus
             ),
-            irq: irq(bus),
-            nmi: nmi(bus),
+            irq: irq(),
+            nmi: nmi(),
             reset: reset()
         },
         { state: null }

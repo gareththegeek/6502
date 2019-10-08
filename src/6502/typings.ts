@@ -17,3 +17,4 @@ export type TGetAddressingMode = (
 ) => number
 export type TGetOperation = (instruction: IInstruction) => TOperation
 export type TOperation = (state: IState, bus: IBus, parameter: number) => IState
+export type TInterrupt = (state: IState, bus: IBus, vector: number, flag: number) => IState

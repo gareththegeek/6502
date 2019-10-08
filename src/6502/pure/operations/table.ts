@@ -55,6 +55,7 @@ import bcs from './bcs'
 import pha from './pha'
 import pla from './pla'
 import plp from './plp'
+import interrupt from '../interrupt'
 
 export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     adc: adc(),
@@ -67,7 +68,7 @@ export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     bmi: bmi(),
     bne: bne(),
     bpl: bpl(),
-    brk: brk(),
+    brk: brk(interrupt()),
     bvc: bvc(),
     bvs: bvs(),
     clc: clc(),

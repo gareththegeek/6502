@@ -4,14 +4,18 @@ import {
     TStateMachine,
     TFetchOperand,
     TGetAddressingMode,
-    TGetOperation
+    TGetOperation,
+    TInterrupt
 } from '../typings'
 import IBus from '../../bus/ibus'
 import IState from '../state/istate'
 import IDataRegisters from '../state/idataregisters'
+import { NMI_VECTOR, IRQ_VECTOR } from '../state/vectors'
+import { B_NMI, B_IRQ } from '../state/bflags'
 
 export default (
     initialise: TInitialise,
+    interrupt: TInterrupt,
     fetchInstruction: TFetchInstruction,
     fetchOperand: TFetchOperand,
     getAddressingMode: TGetAddressingMode,
@@ -25,6 +29,15 @@ export default (
     if (!state.initialised) {
         return initialise()
     }
+
+    if (state.nmi) {
+        return interrupt(state, bus, NMI_VECTOR, B_NMI)
+    }
+
+    if (state.irq) {
+        return interrupt(state, bus, IRQ_VECTOR, B_IRQ)
+    }
+
     //TODO extra cycles
     const instruction = fetchInstruction(bus, state.pc)
     const operand = fetchOperand(bus, state.pc + 1, instruction.size - 1)
