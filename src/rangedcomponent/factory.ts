@@ -10,6 +10,7 @@ export default (pubsub: IPubSub, component: IRangedComponent): IRangedComponent 
     const result = connect(
         {
             range: component.range,
+            component,
             initialise: initialise(component),
             read: read(component.range, component.read),
             write: write(component.range, component.write)

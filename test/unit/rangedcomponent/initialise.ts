@@ -2,6 +2,7 @@ import * as chai from 'chai'
 import initialise from '../../../src/rangedcomponent/pure/initialise'
 import sinon = require('sinon')
 import * as sinonChai from 'sinon-chai'
+import IRangedComponent from '../../../src/rangedcomponent/irangedcomponent'
 chai.use(sinonChai)
 const expect = chai.expect
 
@@ -11,6 +12,7 @@ describe('Unit', () => {
             it('should call wrapped component initialise', () => {
                 const component = {
                     range: { from: 0x2000, to: 0x2100 },
+                    component: {} as IRangedComponent,
                     initialise: sinon.stub(),
                     read: sinon.stub(),
                     write: sinon.stub()

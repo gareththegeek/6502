@@ -5,6 +5,7 @@ import connect from '../state/connect'
 import IRange from '../rangedcomponent/state/irange'
 import IBusWriteProps from '../bus/state/ibuswriteprops'
 import IBusResult from '../bus/state/ibusresult'
+import IState from './state/istate'
 
 export default (range: IRange): IRom =>
     connect(
@@ -12,7 +13,7 @@ export default (range: IRange): IRom =>
             range,
             initialise: initialise(),
             read: read(range),
-            write: (_: IBusWriteProps): IBusResult => ({ value: null, read: false, write: false })
+            write: (state: IState, __: IBusWriteProps): IBusResult => ({ ...state })
         },
         { state: null }
     ) as IRom
