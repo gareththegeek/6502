@@ -1,6 +1,6 @@
-import { build6502State } from "../../helpers/factories"
-import nmi from "../../../src/6502/pure/nmi"
-import { expect } from "chai"
+import { build6502State } from '../../helpers/factories'
+import nmi from '../../../src/6502/pure/nmi'
+import { expect } from 'chai'
 
 describe('Unit', () => {
     describe('6502', () => {

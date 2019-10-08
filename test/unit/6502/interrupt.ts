@@ -1,7 +1,7 @@
 import * as sinon from 'sinon'
 import * as chai from 'chai'
-import interrupt from "../../../src/6502/pure/interrupt"
-import { build6502State } from "../../helpers/factories"
+import interrupt from '../../../src/6502/pure/interrupt'
+import { build6502State } from '../../helpers/factories'
 import IBusReadProps from '../../../src/bus/state/ibusreadprops'
 const expect = chai.expect
 
@@ -29,8 +29,8 @@ describe('Unit', () => {
                 const uut = interrupt()
                 const actual = uut(previous, bus, 0x8765, 0x30)
 
-                expect(writeStub.getCall(0).args[0]).to.be.deep.equal({ address: 0x01ff, value: 0x34 })
-                expect(writeStub.getCall(1).args[0]).to.be.deep.equal({ address: 0x01fe, value: 0x12 })
+                expect(writeStub.getCall(0).args[0]).to.be.deep.equal({ address: 0x01ff, value: 0x12 })
+                expect(writeStub.getCall(1).args[0]).to.be.deep.equal({ address: 0x01fe, value: 0x34 })
                 expect(writeStub.getCall(2).args[0]).to.be.deep.equal({ address: 0x01fd, value: 0xba })
                 expect(actual.sp).to.be.equal(0xfc)
             })

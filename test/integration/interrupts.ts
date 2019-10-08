@@ -1,5 +1,5 @@
-import { build6502system } from "../helpers/factories"
-import { expect } from "chai"
+import { build6502system } from '../helpers/factories'
+import { expect } from 'chai'
 
 describe('Integration', () => {
     describe('6502', () => {
@@ -18,7 +18,7 @@ describe('Integration', () => {
                 system.cpu.clock()
                 system.cpu.clock()
                 system.cpu.clock()
-                
+
                 expect(system.cpu.store.state.irq).to.be.true
                 expect(system.cpu.store.state.sp).to.be.equal(0xff)
                 expect(system.cpu.store.state.status.irqDisable).to.be.false
@@ -46,7 +46,7 @@ describe('Integration', () => {
                 system.cpu.clock()
                 system.cpu.clock()
                 system.cpu.clock()
-                
+
                 expect(system.cpu.store.state.nmi).to.be.true
                 expect(system.cpu.store.state.sp).to.be.equal(0xff)
                 expect(system.cpu.store.state.status.irqDisable).to.be.false

@@ -1,5 +1,5 @@
-import toSigned from "../../../src/bitwise/toSigned"
-import { expect } from "chai"
+import toSigned from '../../../src/bitwise/toSigned'
+import { expect } from 'chai'
 
 describe('Unit', () => {
     describe('bitwise', () => {

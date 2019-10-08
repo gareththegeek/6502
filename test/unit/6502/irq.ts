@@ -1,6 +1,6 @@
-import { build6502State } from "../../helpers/factories"
-import irq from "../../../src/6502/pure/irq"
-import { expect } from "chai"
+import { build6502State } from '../../helpers/factories'
+import irq from '../../../src/6502/pure/irq'
+import { expect } from 'chai'
 
 describe('Unit', () => {
     describe('6502', () => {
