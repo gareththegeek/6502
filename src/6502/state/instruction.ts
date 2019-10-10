@@ -7,7 +7,6 @@ export default class implements IInstruction {
     public size: number
     public cycles: number
     public addPageBoundaryCycle: boolean
-    public addBranchCycles: boolean
 
     constructor(
         opcode: number,
@@ -15,8 +14,7 @@ export default class implements IInstruction {
         addressingMode: string,
         size: number,
         cycles: number,
-        addPageBoundaryCycle = false,
-        addBranchCycles = false
+        addPageBoundaryCycle = false
     ) {
         this.opcode = opcode
         this.mnemonic = mnemonic
@@ -24,6 +22,5 @@ export default class implements IInstruction {
         this.size = size
         this.cycles = cycles
         this.addPageBoundaryCycle = addPageBoundaryCycle
-        this.addBranchCycles = addBranchCycles
     }
 }

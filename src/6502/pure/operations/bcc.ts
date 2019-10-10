@@ -1,10 +1,6 @@
 import IState from '../../state/istate'
 import IBus from '../../../bus/ibus'
+import { TBranchOperation } from '../../typings'
 
-export default () => (state: IState, _: IBus, parameter: number): IState => ({
-    ...state,
-    pc: state.status.carry ? state.pc : state.pc + parameter,
-    status: {
-        ...state.status
-    }
-})
+export default (branch: TBranchOperation) => (state: IState, _: IBus, parameter: number): IState =>
+    branch(state, parameter, !state.status.carry)

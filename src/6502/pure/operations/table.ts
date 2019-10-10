@@ -56,21 +56,22 @@ import pha from './pha'
 import pla from './pla'
 import plp from './plp'
 import interrupt from '../interrupt'
+import branch from '../branch'
 
 export const OPERATION_TABLE: { [mnemonic: string]: TOperation } = {
     adc: adc(),
     and: and(),
     asl: asl(),
-    bcc: bcc(),
-    bcs: bcs(),
-    beq: beq(),
+    bcc: bcc(branch()),
+    bcs: bcs(branch()),
+    beq: beq(branch()),
     bit: bit(),
-    bmi: bmi(),
-    bne: bne(),
-    bpl: bpl(),
+    bmi: bmi(branch()),
+    bne: bne(branch()),
+    bpl: bpl(branch()),
     brk: brk(interrupt()),
-    bvc: bvc(),
-    bvs: bvs(),
+    bvc: bvc(branch()),
+    bvs: bvs(branch()),
     clc: clc(),
     cld: cld(),
     cli: cli(),

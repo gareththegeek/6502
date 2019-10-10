@@ -5,5 +5,4 @@ export default interface IInstruction {
     size: number
     cycles: number
     addPageBoundaryCycle: boolean
-    addBranchCycles: boolean
 }
