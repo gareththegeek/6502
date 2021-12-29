@@ -1,12 +1,14 @@
 {
   "name": "6502",
   "version": "1.0.0",
-  "description": "",
+  "description": "6502 processor emulation library written in Typescript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --open",
     "lint:fix": "eslint ./**/*.{ts,tsx} --fix",
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "build": "tsc -p tsconfig.prod.json",
+    "prepare": "npm run build"
   },
   "nyc": {
     "extension": [
@@ -21,8 +23,8 @@
       "lcov"
     ]
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gareth Williams",
+  "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.2.2",
     "@types/chai-subset": "^1.3.3",
@@ -36,20 +38,13 @@
     "chai-subset": "^1.6.0",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
-    "eslint-config-react": "^1.1.7",
-    "eslint-loader": "^3.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "mocha": "^6.2.0",
-    "mocha-loader": "^3.0.0",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
-    "ts-loader": "^6.1.0",
     "ts-node": "^8.3.0",
-    "typescript": "^3.6.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.8.0"
+    "typescript": "^3.6.3"
   }
 }
