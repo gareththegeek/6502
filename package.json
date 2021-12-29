@@ -1,5 +1,5 @@
 {
-  "name": "6502",
+  "name": "js6502",
   "version": "1.0.0",
   "description": "6502 processor emulation library written in Typescript",
   "main": "dist/index.js",

@@ -7,5 +7,8 @@
         "moduleResolution": "node",
         "target": "es2016",
         "declaration": true
-    }
+    },
+    "exclude": [
+        "dist/**/*"
+    ]
 }
