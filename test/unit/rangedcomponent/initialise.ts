@@ -15,6 +15,7 @@ describe('Unit', () => {
                     component: {} as IRangedComponent,
                     initialise: sinon.stub(),
                     read: sinon.stub(),
+                    readRange: sinon.stub(),
                     write: sinon.stub()
                 }
                 const previous = {

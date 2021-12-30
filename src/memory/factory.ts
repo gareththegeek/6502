@@ -6,6 +6,7 @@ import write from './pure/write'
 import initialise from './pure/initialise'
 import connect from '../state/connect'
 import IRange from '../rangedcomponent/state/irange'
+import readRange from './pure/readRange'
 
 export default (range: IRange): IMemory =>
     connect(
@@ -13,6 +14,7 @@ export default (range: IRange): IMemory =>
             range,
             initialise: initialise(),
             read: read(range, getPageIndex(), getPageAddress()),
+            readRange: readRange(range),
             write: write(range, getPageIndex(), getPageAddress())
         },
         { state: null }
