@@ -21,5 +21,5 @@ export default (pubsub: IPubSub, component: IRangedComponent): IRangedComponent 
     pubsub.subscribe(BUS_READ, result.read)
     pubsub.subscribe(BUS_WRITE, result.write)
 
-    return result
+    return { ...component, ...result }
 }
