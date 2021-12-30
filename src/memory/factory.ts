@@ -8,14 +8,15 @@ import connect from '../state/connect'
 import IRange from '../rangedcomponent/state/irange'
 import readRange from './pure/readRange'
 
-export default (range: IRange): IMemory =>
-    connect(
+export default (range: IRange): IMemory => ({
+    ...connect(
         {
             range,
             initialise: initialise(),
             read: read(range, getPageIndex(), getPageAddress()),
-            readRange: readRange(range),
             write: write(range, getPageIndex(), getPageAddress())
         },
         { state: null }
-    ) as IMemory
+    ),
+    readRange: readRange(range)
+} as unknown as IMemory)
