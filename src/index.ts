@@ -22,7 +22,7 @@ export default (): I6502System => {
 
     return {
         cpu,
-        memory,
-        rom
+        memory: memory.component,
+        rom: rom.component
     }
 }
