@@ -1,6 +1,6 @@
 {
   "name": "js6502",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "6502 processor emulation library written in Typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

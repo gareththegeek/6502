@@ -8,15 +8,19 @@ import IBusResult from '../bus/state/ibusresult'
 import IState from './state/istate'
 import readRange from './pure/readRange'
 
-export default (range: IRange): IRom => ({
-    ...connect(
-        {
-            range,
-            initialise: initialise(),
-            read: read(range),
-            write: (state: IState, __: IBusWriteProps): IBusResult => ({ ...state })
-        },
-        { state: null }
-    ),
-    readRange: readRange(range)
-} as unknown as IRom)
+export default (range: IRange): IRom => {
+    const connected =
+        connect(
+            {
+                range,
+                initialise: initialise(),
+                read: read(range),
+                write: (state: IState, __: IBusWriteProps): IBusResult => ({ ...state })
+            },
+            { state: null }
+        )
+    return {
+        ...connected,
+        readRange: readRange(range, connected.store)
+    } as unknown as IRom
+} 

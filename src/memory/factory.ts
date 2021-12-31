@@ -8,8 +8,8 @@ import connect from '../state/connect'
 import IRange from '../rangedcomponent/state/irange'
 import readRange from './pure/readRange'
 
-export default (range: IRange): IMemory => ({
-    ...connect(
+export default (range: IRange): IMemory => {
+    const connected = connect(
         {
             range,
             initialise: initialise(),
@@ -17,6 +17,9 @@ export default (range: IRange): IMemory => ({
             write: write(range, getPageIndex(), getPageAddress())
         },
         { state: null }
-    ),
-    readRange: readRange(range)
-} as unknown as IMemory)
+    )
+    return {
+        ...connected,
+        readRange: readRange(range, connected.store)
+    } as unknown as IMemory
+}

@@ -2,8 +2,9 @@ import IState from '../state/istate'
 import IRangeReadProps from '../../bus/state/irangereadprops'
 import IRangeResult from '../../bus/state/irangeresult'
 import IRange from '../../rangedcomponent/state/irange'
+import IStore from '../../state/istore'
 
-export default (range: IRange) => (state: IState, props: IRangeReadProps): IRangeResult => ({
+export default (range: IRange, { state }: IStore<IState>) => (props: IRangeReadProps): IRangeResult => ({
     //TODO tidy this up
     data: Object.values(state.pages)
         .flatMap(x => x.data)

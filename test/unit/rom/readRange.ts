@@ -14,8 +14,8 @@ describe('Unit', () => {
                     read: false,
                     write: false
                 }
-                const uut = readRange({ from, to })
-                const actual = uut(state, { range: { from: 0x2 + from, to: 0x4 + from } })
+                const uut = readRange({ from, to }, { state })
+                const actual = uut({ range: { from: 0x2 + from, to: 0x4 + from } })
 
                 expect(actual.data).to.be.deep.equal(expected)
             })
