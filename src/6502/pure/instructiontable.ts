@@ -19,7 +19,7 @@ export const INSTRUCTION_TABLE: { [opcode: number]: IInstruction } = {
     0x19: new Instruction(0x19, 'ORA', 'ABS,Y', 3, 4, true),
     0x1d: new Instruction(0x1d, 'ORA', 'ABS,X', 3, 4, true),
     0x1e: new Instruction(0x1e, 'ASL', 'ABS,X', 3, 7),
-    0x20: new Instruction(0x20, 'JSR', 'Absolute', 3, 6),
+    0x20: new Instruction(0x20, 'JSR', 'ABS', 3, 6),
     0x21: new Instruction(0x21, 'AND', '(IND,X)', 2, 6),
     0x24: new Instruction(0x24, 'BIT', 'ZP', 2, 3),
     0x25: new Instruction(0x25, 'AND', 'ZP', 2, 3),
